@@ -1,21 +1,20 @@
-from src.functions.ler_contador import ler_contador as contadores
-from src.functions.obter_impressoras_zebra import obter_impressoras_zebra as impressoras_zebra
-import src.functions.cria_txt as txt
+from src.functions.ler_contador import ler_contador
+from src.functions.obter_impressoras_zebra import obter_impressoras_zebra
+from src.functions.gravar_contador import gravar_contador
+from service.enviar_email import enviar_email
 
 # Quantidade de impressoras
-qtd_impressoras = len(impressoras_zebra.obter_impressoras_zebra())
+qtd_impressoras = len(obter_impressoras_zebra())
 
 # IPs das impressoras Zebra
-ips_zebras = [impressora['ip']
-              for impressora in impressoras_zebra.obter_impressoras_zebra()]
+ips_zebras = [impressora['ip'] for impressora in obter_impressoras_zebra()]
 
 # Nomes das impressoras Zebra
 printer_names = [impressora['nome']
-                 for impressora in impressoras_zebra.obter_impressoras_zebra()]
+                 for impressora in obter_impressoras_zebra()]
 
 # SELB das impressoras Zebra
-selbs = [impressora['selb']
-         for impressora in impressoras_zebra.obter_impressoras_zebra()]
+selbs = [impressora['selb'] for impressora in obter_impressoras_zebra()]
 
 # Porta de comunicação com a impressora
 printer_port = 9100
@@ -38,8 +37,10 @@ for (i) in range(qtd_impressoras):
     selb = selbs[i]
 
     # Le o contador e coloca no na lista total_contadores
-    total_contadores.append(contadores.ler_contador(
+    total_contadores.append(ler_contador(
         ip_zebra, printer_name, selb, printer_port, zpl_command))
 
-# Imprime o valor do contador
-txt.gravar_contador(contadores=total_contadores)
+# Imprime o valor do contador no arquivo generated\contador.txt
+gravar_contador(total_contadores)
+
+enviar_email(total_contadores)
