@@ -1,8 +1,17 @@
 import socket
 import json
 
+
+# Função para ler o contador não resetável da impressora
 def ler_contador(ip_zebra, printer_name, selb, porta, comando_zpl):
     try:
+        # Verifica se o IP da impressora é 0.0.0.0 (PRINT SERVER) e retorna INACESSÍVEL
+        if ip_zebra == '0.0.0.0':
+            cont_nao_reinic = 'INACESSÍVEL'
+            contador_formatado = selb + ' | ' + printer_name + ' | ' + ip_zebra + ' → ' + cont_nao_reinic + '\n'
+            print(contador_formatado)
+            return contador_formatado
+
         # Abre uma conexão de socket com a impressora
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.connect((ip_zebra, porta))
@@ -29,10 +38,10 @@ def ler_contador(ip_zebra, printer_name, selb, porta, comando_zpl):
 
         # Remove o IN do final da String cont_nao_reinic
         cont_nao_reinic = cont_nao_reinic[:-2]
+
+    # Caso ocorra um erro ao acessar a impressora, retorna INACESSÍVEL
     except Exception as e:
-            print('Erro ao acessar a impressora', ip_zebra)
             cont_nao_reinic = 'INACESSÍVEL'
-            exit()
 
     # Imprime SELB | NOME | IP | CONTADOR
     print(selb + ' | ' + printer_name + ' | ' + ip_zebra + ' → ' + cont_nao_reinic)
