@@ -6,23 +6,23 @@ from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 
 
-def enviar_email(contadores):
+def enviar_email(html_gerado):
 
     # Configurações do servidor de e-mail
-    host = os.getenv('HOST_EMAIL')
-    porta = int(os.getenv('PORTA_SMTP', '587'))
-    remetente = os.getenv('EMAIL')
-    senha = os.getenv('SENHA_EMAIL')
+    host =
+    porta = 587
+    remetente =
+    senha =
 
     # Cria o objeto de mensagem
     mensagem = MIMEMultipart()
     mensagem['From'] = remetente
     mensagem['To'] = remetente
-    mensagem['Subject'] = 'Contadores Zebra'
+    mensagem['Subject'] = 'Contadores Zebra - Teste final'
 
     # Adiciona o corpo da mensagem
-    corpo = '\n'.join(contadores)
-    mensagem.attach(MIMEText(corpo, 'plain'))
+    # corpo = '\n'.join(contadores)
+    mensagem.attach(MIMEText(html_gerado, 'html'))
 
     # Conecta-se ao servidor de e-mail
     servidor = smtplib.SMTP(host, porta)
