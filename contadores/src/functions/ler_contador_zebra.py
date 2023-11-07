@@ -1,12 +1,12 @@
 import socket
 
 
-def ler_contador(ip_zebra, printer_name, selb, porta, comando_zpl):
+def ler_contador_zebra(ip_zebra, printer_name, selb, porta, comando_zpl):
     try:
         if ip_zebra == '0.0.0.0':
             contador = {
                 'selb': selb,
-                'printer_name': printer_name,
+                'nome': printer_name,
                 'ip': ip_zebra,
                 'cont_nao_reinic': 'INACESSÍVEL'
             }
@@ -23,14 +23,14 @@ def ler_contador(ip_zebra, printer_name, selb, porta, comando_zpl):
         counter_value = response[start_index:end_index]
 
         line = counter_value.split('\n')
-        field_line = next((l for l in line if 'CONT NAO REINIC' in l), None)
+        field_line = next((l for l in line if 'CONT NAO REINIC' in l or 'NT-RESET TLR' in l), None)
 
         cont_nao_reinic = field_line.split('CONT NAO REINIC')[0].strip()
         cont_nao_reinic = cont_nao_reinic[:-3]
 
         contador = {
             'selb': selb,
-            'printer_name': printer_name,
+            'nome': printer_name,
             'ip': ip_zebra,
             'cont_nao_reinic': cont_nao_reinic
         }
@@ -42,7 +42,7 @@ def ler_contador(ip_zebra, printer_name, selb, porta, comando_zpl):
     except Exception as e:
         contador = {
             'selb': selb,
-            'printer_name': printer_name,
+            'nome': printer_name,
             'ip': ip_zebra,
             'cont_nao_reinic': 'INACESSÍVEL'
         }

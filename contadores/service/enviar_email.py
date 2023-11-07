@@ -9,19 +9,18 @@ from dotenv import load_dotenv
 def enviar_email(html_gerado):
 
     # Configurações do servidor de e-mail
-    host =
+    host = 'smtp.durin.com.br'
     porta = 587
-    remetente =
-    senha =
+    remetente = 'suporte@durin.com.br'
+    senha = 'Home@durin'
 
     # Cria o objeto de mensagem
     mensagem = MIMEMultipart()
     mensagem['From'] = remetente
     mensagem['To'] = remetente
-    mensagem['Subject'] = 'Contadores Zebra - Teste final'
+    mensagem['Subject'] = 'Contadores Zebra'
 
     # Adiciona o corpo da mensagem
-    # corpo = '\n'.join(contadores)
     mensagem.attach(MIMEText(html_gerado, 'html'))
 
     # Conecta-se ao servidor de e-mail

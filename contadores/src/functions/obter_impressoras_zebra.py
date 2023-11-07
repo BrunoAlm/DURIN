@@ -1,8 +1,9 @@
 import json
 
+
 def obter_impressoras_zebra():
     # Abre o arquivo JSON de configurações das impressoras
-    with open('src/data/impressoras_zebra.json', 'r', encoding= 'utf-8') as arquivo_json:
+    with open('src\\data\\impressoras.json', 'r', encoding= 'utf-8') as arquivo_json:
         # Faz a leitura do conteúdo do arquivo
         json_data = arquivo_json.read()
 
@@ -27,6 +28,5 @@ def obter_impressoras_zebra():
                 'ip': ip,
                 'selb': selb
             })
-
         # Retorna os dados das impressoras
         return dados_impressoras
