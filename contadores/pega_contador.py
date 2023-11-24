@@ -88,12 +88,14 @@ def pega_contador_multifuncionais():
 
 # def gera_zebra_email():
 #     enviar_email(html(pega_contador_zebras(), 'zebra', selbetti=True))
+# enviar_email(html(pega_contador_zebras(), 'zebra', selbetti=True))
 
 # def gera_zebra_html():
 #     html(pega_contador_zebras(), 'zebra', selbetti=False)
+enviar_email(html(pega_contador_multifuncionais(),'multifuncionais', selbetti=False))
 
-def gera_html_multifuncionais():
-    html(pega_contador_multifuncionais(),'multifuncionais', selbetti=False)
-gera_html_multifuncionais()
+# def gera_html_multifuncionais():
+#     html(pega_contador_multifuncionais(),'multifuncionais', selbetti=False)
+# gera_html_multifuncionais()
 
 print('Tudo concluído!')
