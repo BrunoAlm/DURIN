@@ -1,0 +1,290 @@
+{
+    "impressoras": {
+        "zebra": {
+            "impzb001": {
+                "ip": "10.0.3.11",
+                "selb": "BA97",
+                "setor": "EXPEDIÇÃO"
+            },
+            "impzb002": {
+                "ip": "10.0.3.12",
+                "selb": "GO47",
+                "setor": "MONTAGEM"
+            },
+            "impzb003": {
+                "ip": "10.0.3.13",
+                "selb": "CZ54",
+                "setor": "RECEBIMENTO"
+            },
+            "impzb004": {
+                "ip": "10.0.3.14",
+                "selb": "CR38",
+                "setor": "INJEÇÃO"
+            },
+            "impzb005": {
+                "ip": "10.0.3.15",
+                "selb": "CZ57",
+                "setor": "RECEBIMENTO"
+            },
+            "impzb006": {
+                "ip": "10.0.3.16",
+                "selb": "UA81",
+                "setor": "INJEÇÃO"
+            },
+            "impzb007": {
+                "ip": "10.0.3.19",
+                "selb": "G310",
+                "setor": "EXPEDIÇÃO"
+            },
+            "impzb008": {
+                "ip": "10.0.3.20",
+                "selb": "G309",
+                "setor": "EXPEDIÇÃO"
+            },
+            "impzb009": {
+                "ip": "10.0.3.21",
+                "selb": "CR40",
+                "setor": "SHRINK"
+            },
+            "impzb010": {
+                "ip": "10.0.3.30",
+                "selb": "G347",
+                "setor": "ALMOX. / MONT."
+            },
+            "impzb011": {
+                "ip": "10.0.3.47",
+                "selb": "GO41",
+                "setor": "SHRINK"
+            },
+            "impzb012": {
+                "ip": "10.0.3.39",
+                "selb": "CZ58",
+                "setor": "EXTRUSÃO"
+            },
+            "impzb013": {
+                "ip": "10.0.3.41",
+                "selb": "49KC",
+                "setor": "EXPEDIÇÃO"
+            },
+            "impzb014": {
+                "ip": "0.0.0.0",
+                "selb": "O074",
+                "setor": "EXPEDIÇÃO"
+            },
+            "impzb015": {
+                "ip": "0.0.0.0",
+                "selb": "CV26",
+                "setor": "ALMOX. / MONT."
+            },
+            "impzb016": {
+                "ip": "10.0.3.44",
+                "selb": "59RW",
+                "setor": "QUÍMICA"
+            },
+            "impzb017": {
+                "ip": "10.0.3.45",
+                "selb": "60RW",
+                "setor": "QUÍMICA"
+            },
+            "impzb018": {
+                "ip": "10.0.3.49",
+                "selb": "78DQ",
+                "setor": "EXPEDIÇÃO"
+            },
+            "impzm001": {
+                "ip":"10.1.3.6",
+                "selb": "BEQ5",
+                "setor":"MONTAGEM"
+            },
+            "impzm002": {
+                "ip":"10.1.3.7",
+                "selb": "BEQ8",
+                "setor":"ALMOXARIFADO"
+            },
+            "impzm003": {
+                "ip":"10.1.3.3",
+                "selb": "FWX6",
+                "setor":"EXPEDIÇÃO"
+            },
+            "impzm004": {
+                "ip":"10.1.3.4",
+                "selb": "PH92",
+                "setor":"EXPEDIÇÃO"
+            },
+            "impzm005": {
+                "ip":"10.1.3.5",
+                "selb": "FK08",
+                "setor":"EXPEDIÇÃO"
+            }
+
+        },
+        "multifuncional": {  
+            "impxr001": {
+                
+                "ip": "10.0.3.4",
+                "selb": "BE85",
+                "setor": "MANUTENÇÃO"
+            },          
+            "impxr002": {
+                "ip": "10.0.3.5",
+                "selb": "CP06",
+                "setor": "PCP"
+            },
+            "impxr003": {
+                "ip": "10.0.3.6",
+                "selb": "BE53",
+                "setor": "TELEVENDAS"
+            },
+            "impxr004": {
+                "ip": "10.0.3.7",
+                "selb": "DAS9",
+                "setor": "CONTABILIDADE"
+            },
+            "impxr005": {
+                "ip": "10.0.3.8",
+                "selb": "LP92",
+                "setor": "ADMINISTRATIVO"
+            },
+            "impxr006": {
+                "ip": "10.0.3.98",
+                "selb": "RJ93",
+                "setor": "BACKUP TI"
+            },
+            "impxr007": {
+                "ip": "10.0.3.10",
+                "selb": "LWK7",
+                "setor": "MARKETING (COLOR)"
+            },
+            "impxr008": {
+                "ip": "10.0.3.17",
+                "selb": "50AZ e 81AD",
+                "setor": "EXPEDIÇÃO"
+            },
+            "impxr009": {
+                "ip": "10.0.3.18",
+                "selb": "BE73",
+                "setor": "FATURAMENTO"
+            },
+            "impxr010": {
+                "ip": "10.0.3.53",
+                "selb": "88QQ",
+                "setor": "RH"
+            },
+            "impxr011": {
+                "ip": "10.0.3.24",
+                "selb": "91WR",
+                "setor": "SEG. TRABALHO"
+            },
+            "impxr012": {
+                "ip": "10.0.3.25",
+                "selb": "Q505",
+                "setor": "QUALIDADE"
+            },
+            "impxr013": {
+                "ip": "10.0.3.29",
+                "selb": "BF31",
+                "setor": "FERRAMENTARIA"
+            },
+            "impxr014": {
+                "ip": "10.0.3.27",
+                "selb": "71DB",
+                "setor": "COMPRAS"
+            },
+            "impxr015": {
+                "ip": "10.0.3.28",
+                "selb": "BF13",
+                "setor": "PROJETOS"
+            },
+            "impxr016": {
+                "ip": "10.0.3.33",
+                "selb": "SELB?",
+                "setor": "ALMOXARIFADO"
+            },
+            "impxr017": {
+                "ip": "10.0.3.31",
+                "selb": "ID32",
+                "setor": "MONTAGEM"
+            },
+            "impxr018": {
+                "ip": "10.0.3.32",
+                "selb": "G150",
+                "setor": "FINANCEIRO"
+            },
+            "impxr019": {
+                "ip": "10.0.3.23",
+                "selb": "F060",
+                "setor": "QUÍMICA"
+            },
+            "impxr020": {
+                "ip": "10.0.9.254",
+                "selb": "BT25",
+                "setor": "DIR. INDUSTRIAL"
+            },
+            "impxr021": {
+                "ip": "10.0.3.36",
+                "selb": "H740",
+                "setor": "LOGISTICA"
+            },
+            "impxr022": {
+                "ip": "10.0.3.40",
+                "selb": "SELB?",
+                "setor": "ALMOXARIFADO"
+            },
+            "impxr023": {
+                "ip": "10.0.3.46",
+                "selb": "QI38",
+                "setor": "PRODUÇÃO"
+            },
+            "impxr024": {
+                "ip": "10.10.0.80",
+                "selb": "153Q",
+                "setor": "PORT. FISCAL"
+            },
+            "impxr025": {
+                "ip": "10.0.3.50",
+                "selb": "CR74",
+                "setor": "EXPEDIÇÃO"
+            },
+            "impxr026": {
+                "ip": "10.0.3.51",
+                "selb": "SELB?",
+                "setor": "ALMOXARIFADO"
+            },
+            "impxr027": {
+                "ip": "10.0.3.52",
+                "selb": "SELB?",
+                "setor": "ALMOXARIFADO"
+            },
+            "impxr028": {
+                "ip": "10.0.3.53",
+                "selb": "88QQ",
+                "setor": "RH"
+            },
+            "impxr029": {
+                "ip": "10.0.3.35",
+                "selb": "GY57",
+                "setor": "MÉDICA"
+            },
+            "impxr030": {
+                "ip": "10.0.3.37",
+                "selb": "XN40",
+                "setor": "JURIDICO"
+            },
+            "impxm001": {
+                "ip": "10.1.3.1",
+                "selb": "217R",
+                "setor": "ADM"
+            },
+            "impxm002": {
+                "ip": "10.1.3.2",
+                "selb": "JMV8",
+                "setor": "EXPEDIÇÃO"
+            },
+            "impxm003": {
+                "ip": "10.1.3.8",
+                "selb": "FMO5",
+                "setor": "ADM (COLOR)"
+            }
+        }
+    }
+}
