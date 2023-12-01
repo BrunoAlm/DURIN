@@ -25,6 +25,7 @@ def obter_impressoras_com_contadores():
         # Serializar os dados da impressora e adicionar os contadores
         dados_impressora = {
             'id': impressora.id,
+            'nome': impressora.nome,
             'ip': impressora.ip,
             'selb': impressora.selb,
             'setor': impressora.setor,

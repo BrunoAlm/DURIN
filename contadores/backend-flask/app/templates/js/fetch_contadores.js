@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const cardTitle = document.createElement('h5');
                 cardTitle.classList.add('card-title');
-                cardTitle.textContent = `IP: ${impressora.ip}`;
+                cardTitle.textContent = `${impressora.nome}, IP: ${impressora.ip}`;
 
                 const cardText = document.createElement('p');
                 cardText.classList.add('card-text');

@@ -31,12 +31,14 @@ class Impressora(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     ip = db.Column(db.String(15))
+    nome = db.Column(db.String(15))
     selb = db.Column(db.String(20))
     setor = db.Column(db.String(50))
     tipo = db.Column(db.String(20))
 
-    def __init__(self, ip, selb, setor, tipo):
+    def __init__(self, ip, nome, selb, setor, tipo):
         self.ip = ip
+        self.nome = nome
         self.selb = selb
         self.setor = setor
         self.tipo = tipo
@@ -45,6 +47,7 @@ class Impressora(db.Model):
         return {
             'id': self.id,
             'ip': self.ip,
+            'nome': self.nome,
             'selb': self.selb,
             'setor': self.setor,
             'tipo': self.tipo

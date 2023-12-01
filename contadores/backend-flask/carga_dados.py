@@ -35,12 +35,14 @@ class Impressora(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     ip = db.Column(db.String(15))
+    nome = db.Column(db.String(15))
     selb = db.Column(db.String(20))
     setor = db.Column(db.String(50))
     tipo = db.Column(db.String(20))
 
-    def __init__(self, ip, selb, setor, tipo):
+    def __init__(self, ip, nome, selb, setor, tipo):
         self.ip = ip
+        self.nome = nome
         self.selb = selb
         self.setor = setor
         self.tipo = tipo
@@ -48,6 +50,7 @@ class Impressora(db.Model):
     def serialize(self):
         return {
             'id': self.id,
+            'nome': self.nome,
             'ip': self.ip,
             'selb': self.selb,
             'setor': self.setor,
@@ -70,7 +73,7 @@ with app.app_context():
             tipo_impressora = tipo
 
             # Criar uma instância do modelo Impressora
-            impressora = Impressora(ip=ip, selb=selb, setor=setor, tipo=tipo_impressora)
+            impressora = Impressora(ip=ip, nome=nome, selb=selb, setor=setor, tipo=tipo_impressora)
 
             # Salvar a instância no banco
             db.session.add(impressora)
