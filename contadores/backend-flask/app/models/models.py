@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-db = SQLAlchemy()
+from app import db
 
 class Contador(db.Model):
     __tablename__ = 'contadores_historico'

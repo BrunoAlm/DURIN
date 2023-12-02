@@ -1,7 +1,10 @@
-from flask import Flask, render_template, send_from_directory
-from app.models.models import db, Contador
+from flask import Flask, render_template
+from flask_socketio import SocketIO
+from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-import os
+
+db = SQLAlchemy()
+socketio = SocketIO()
 
 def create_app():
     # Criar a instância da aplicação Flask
@@ -10,18 +13,20 @@ def create_app():
     # Configurações SQLAlchemy
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../app/db/contadores.db'
     db.init_app(app)
+
+    # Configuração SocketIO
+    app.config['SECRET_KEY'] = 'sua_chave_secreta'  # Altere para sua chave secreta
+    socketio.init_app(app)
+
     with app.app_context():
         db.create_all()
-
-    # Registrar blueprints
-    from api.endpoints import api_bp
-    app.register_blueprint(api_bp, url_prefix='/api')
 
     # Adicionar CORS à aplicação
     CORS(app)
 
-    print(app.static_url_path)
-    print(app.static_folder)
+    # Registrar blueprints
+    from api.endpoints import api_bp
+    app.register_blueprint(api_bp, url_prefix='/api')
 
     # Rotas
     @app.route('/')

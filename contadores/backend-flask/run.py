@@ -1,4 +1,5 @@
 from app import create_app
+
 # Criar a aplicação Flask
 app = create_app()
 
