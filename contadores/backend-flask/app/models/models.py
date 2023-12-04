@@ -35,13 +35,15 @@ class Impressora(db.Model):
     selb = db.Column(db.String(20))
     setor = db.Column(db.String(50))
     tipo = db.Column(db.String(20))
+    contadores = db.relationship('Contador', backref='impressora', lazy=True)
 
-    def __init__(self, ip, nome, selb, setor, tipo):
+    def __init__(self, ip, nome, selb, setor, tipo, contadores):
         self.ip = ip
         self.nome = nome
         self.selb = selb
         self.setor = setor
         self.tipo = tipo
+        self.contadores = contadores
 
     def serialize(self):
         return {
@@ -50,5 +52,6 @@ class Impressora(db.Model):
             'nome': self.nome,
             'selb': self.selb,
             'setor': self.setor,
-            'tipo': self.tipo
+            'tipo': self.tipo,
+            'contadores': self.contadores
         }

@@ -67,6 +67,7 @@ def atualizar_contadores():
     todas_impressoras = Impressora.query.all()
     total_impressoras = len(todas_impressoras)
     progresso_intervalo = 5  # Emitir progresso a cada 5%
+    print('ta coisando')
 
     for idx, impressora in enumerate(todas_impressoras, start=1):
         # Atualiza o contador para algum valor específico, por exemplo, 100
@@ -76,6 +77,8 @@ def atualizar_contadores():
         progresso = int((idx / total_impressoras) * 100)
         if progresso % progresso_intervalo == 0 or idx == total_impressoras:
             emit('progresso_atualizacao', {'progresso': progresso})
+        print(impressora)
+
         
     # Commit após o loop de atualização de contadores
     db.session.commit()
