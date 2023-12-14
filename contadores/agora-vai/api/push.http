@@ -1,0 +1,10 @@
+WS ws://localhost:8000/ws/push
+
+{{@streaming
+  async function writeStream(){
+    await sleep(1000);
+    websocketClient.send('message');
+    await sleep(1000);
+  }
+  exports.waitPromise = writeStream();
+}}
