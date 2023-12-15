@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from .routes import router as routes_router
-from .database import engine
 from . import database
 
 app = FastAPI()
