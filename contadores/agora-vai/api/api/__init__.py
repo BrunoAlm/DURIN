@@ -15,3 +15,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/")
+def list_printers():
+    return {"Teste": "123"}
