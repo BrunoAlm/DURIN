@@ -1,6 +1,7 @@
 from .models import Impressora, Contador
-from .database import SessionLocal  # Importe sua sessão do banco de dados
+from .database import SessionLocal
 from fastapi import HTTPException
+from typing import Optional
 
 # Função para adicionar um contador a uma impressora específica
 def adicionar_contador(impressora_id: int, contador_atual: int):
@@ -62,5 +63,38 @@ def listar_impressoras():
 
         return dados_impressoras
 
+    finally:
+        db.close()
+
+# Rota pra atualizar os valores individuais da impressora
+def update_impressora(
+    impressora_id: int,
+    nome: Optional[str] = None,
+    ip: Optional[str] = None,
+    selb: Optional[str] = None,
+    setor: Optional[str] = None,
+    tipo: Optional[str] = None,
+    nivel_toner: Optional[int] = None,
+    modelo: Optional[str] = None,
+    status: Optional[str] = None
+    ) :
+    db = SessionLocal()
+    try:
+        # Verifica se a impressora existe
+        impressora = db.query(Impressora).filter(Impressora.id == impressora_id).first()
+        if not impressora:
+            raise HTTPException(status_code=404, detail="Impressora não encontrada")
+
+        # Atualiza os campos fornecidos na requisição, se não forem nulos
+        fields = ["nome", "ip", "selb", "setor", "tipo", "nivel_toner", "modelo", "status"]
+        for field in fields:
+            value = locals()[field]
+            if value is not None:
+                setattr(impressora, field, value)
+
+        # Commit para salvar no banco
+        db.commit()
+
+        return {"message": "Impressora atualizada com sucesso", "impressora_id": impressora_id}
     finally:
         db.close()
