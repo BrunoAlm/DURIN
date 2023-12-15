@@ -1,21 +1,16 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from .models import create_db_and_tables
+from .routes import router as routes_router
+from .database import engine
+from . import database
 
 app = FastAPI()
 
+app.include_router(routes_router)
+
 @app.on_event("startup")
-def on_startup():
-    create_db_and_tables()
+def startup():
+    database.init_db()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-@app.get("/")
-def list_printers():
-    return {"Teste": "123"}
+@app.on_event("shutdown")
+async def shutdown():
+    database.shutdown_db()

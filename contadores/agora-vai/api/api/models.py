@@ -1,43 +1,71 @@
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
-from typing import Optional, List
-from uuid import uuid4 as uuid
-from sqlmodel import Field, SQLModel, create_engine, Relationship
 
-sql_file_name = "db.db"
-sqlite_path = f"sqlite:///{sql_file_name}"
+Base = declarative_base()
 
-engine = create_engine(sqlite_path, echo= True)
+class Contador(Base):
+    __tablename__ = 'contadores'
 
-def create_db_and_tables():
-    SQLModel.metadata.create_all(engine)
+    id = Column(Integer, primary_key=True)
+    contador = Column(Integer)
+    data_registro = Column(DateTime)
+    impressora_id = Column(Integer, ForeignKey('impressoras.id'))
+
+    def __init__(self, contador, data_registro=None, impressora_id=None):
+        self.contador = contador
+        if data_registro is None:
+            self.data_registro = datetime.now()
+        else:
+            self.data_registro = datetime.strptime(data_registro, '%Y-%m-%d %H:%M:%S')
+        self.impressora_id = impressora_id
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'contador': self.contador,
+            'data_registro': self.data_registro.strftime('%Y-%m-%d %H:%M:%S'),
+            'impressora_id': self.impressora_id
+        }
+
+class Impressora(Base):
+    __tablename__ = 'impressoras'
+
+    id = Column(Integer, primary_key=True)
+    ip = Column(String(15))
+    nome = Column(String(15))
+    selb = Column(String(20))
+    setor = Column(String(20))
+    tipo = Column(String(20))
+    nivel_toner = Column(Integer)
+    modelo = Column(String(20))
+    status = Column(String(30))
     
-def get_default_uuid():
-    return str(uuid())
+    contadores = relationship('Contador', backref='impressora', lazy=True, cascade='all, delete-orphan', passive_deletes=True)
 
-class Contador(SQLModel, table=True):
-    id: Optional[str] = Field(
-        default_factory=get_default_uuid,
-        primary_key=True,
-    )
-    impressora_id: str = Field(
-        foreign_key="impressora.id",
-        default=None,
-        nullable=False,
-    )
-    data_registro: datetime = Field(default_factory=datetime.now)
-    contador: str = Field(default='N/A')
+    def __init__(self, ip, nome, selb, setor, tipo, nivel_toner, modelo, status, contadores):
+        self.ip = ip
+        self.nome = nome
+        self.selb = selb
+        self.setor = setor
+        self.tipo = tipo
+        self.nivel_toner = nivel_toner
+        self.modelo = modelo
+        self.status = status
+        self.contadores = contadores
+    
 
-class Impressora(SQLModel, table=True):
-    id: Optional[str] = Field(default_factory=get_default_uuid, primary_key=True)
-    nome: str = Field(min_length=1, max_length=8)
-    ip: str = Field(min_length=1, max_length=15)
-    selb: str = Field(default='N/A', min_length=1, max_length=4)
-    nivel_toner: int = Field(default=0)
-    status: str = Field(default='N/A', min_length=1, max_length=30)
-    contadores: List[Contador] = Relationship(
-        back_populates="impressora",
-        sa_relationship_kwargs={"cascade": "all, delete-orphan, delete"},
-    )
-    
-    
-    
+    def serialize(self):
+        return {
+            'id': self.id,
+            'ip': self.ip,
+            'nome': self.nome,
+            'selb': self.selb,
+            'setor': self.setor,
+            'tipo': self.tipo,
+            'nivel_toner': self.nivel_toner,
+            'modelo': self.modelo,
+            'status': self.status,
+            'contadores': self.contadores
+        }
