@@ -1,5 +1,6 @@
 import 'package:app/src/navigation/features/home/home_page.dart';
 import 'package:app/src/navigation/features/printers/printers_page.dart';
+import 'package:app/src/navigation/features/reports/reports_page.dart';
 import 'package:app/src/navigation/features/settings/settings_Page.dart';
 import 'package:app/src/navigation/store/navigation_store.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _NavigationPageState extends State<NavigationPage> {
   final List<Widget> pages = [
     const HomePage(),
     const PrintersPage(),
-    // const SettingsPage(),
+    const ReportsPage()
   ];
 
   @override
@@ -46,7 +47,7 @@ class _NavigationPageState extends State<NavigationPage> {
               leading: FloatingActionButton(
                 elevation: 0,
                 onPressed: () {
-                  // Add your onPressed code here!
+                  print('atualizando impressoras');
                 },
                 child: const Icon(Icons.refresh),
               ),
@@ -69,6 +70,11 @@ class _NavigationPageState extends State<NavigationPage> {
                   icon: Icon(Icons.local_printshop_outlined),
                   selectedIcon: Icon(Icons.local_printshop_rounded),
                   label: Text('Impressoras'),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.receipt_outlined),
+                  selectedIcon: Icon(Icons.receipt_sharp),
+                  label: Text('Relatórios'),
                 ),
               ],
             ),
