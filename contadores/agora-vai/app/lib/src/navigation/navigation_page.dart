@@ -47,7 +47,6 @@ class _NavigationPageState extends State<NavigationPage> {
               leading: FloatingActionButton(
                 elevation: 0,
                 onPressed: () {
-                  print('atualizando impressoras');
                 },
                 child: const Icon(Icons.refresh),
               ),

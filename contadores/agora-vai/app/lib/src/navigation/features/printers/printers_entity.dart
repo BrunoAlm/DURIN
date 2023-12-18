@@ -1,14 +1,14 @@
 class PrintersEntity {
-  int id;
-  String name;
-  String ip;
-  String selb;
-  String department;
-  String type;
-  int tonerLevel;
-  String model;
-  String status;
-  List<CountersEntity> counters;
+  final int id;
+  final String name;
+  final String ip;
+  final String selb;
+  final String department;
+  final String type;
+  final int tonerLevel;
+  final String model;
+  final String status;
+  final List<CountersEntity> counters;
 
   PrintersEntity({
     required this.id,
@@ -62,10 +62,10 @@ class PrintersEntity {
 }
 
 class CountersEntity {
-  int id;
-  int impressoraId;
-  int counter;
-  String collectedDate;
+  final int id;
+  final int impressoraId;
+  final int counter;
+  final DateTime collectedDate;
 
   CountersEntity({
     required this.id,
@@ -88,7 +88,25 @@ class CountersEntity {
       id: map['id'],
       impressoraId: map['impressora_id'],
       counter: map['contador'],
-      collectedDate: map['data_registro'],
+      collectedDate: formatDate(map['data_registro']),
     );
+  }
+
+  static DateTime formatDate(String dateString) {
+    RegExp regex = RegExp(r'(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})');
+    RegExpMatch? match = regex.firstMatch(dateString ?? '');
+
+    if (match != null) {
+      int year = int.parse(match.group(1)!);
+      int month = int.parse(match.group(2)!);
+      int day = int.parse(match.group(3)!);
+      int hour = int.parse(match.group(4)!);
+      int minute = int.parse(match.group(5)!);
+      int second = int.parse(match.group(6)!);
+
+      return DateTime(year, month, day, hour, minute, second);
+    } else {
+      throw Exception('Invalid date format');
+    }
   }
 }

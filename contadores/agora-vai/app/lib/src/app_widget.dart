@@ -9,7 +9,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Contadores Durín',
-      theme: ThemeData(colorSchemeSeed: const Color.fromARGB(255, 134, 1, 1)),
+      theme: ThemeData(colorSchemeSeed: Color.fromARGB(255, 97, 1, 1)),
       home: const NavigationPage(),
     );
   }

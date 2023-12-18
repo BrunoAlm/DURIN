@@ -4,7 +4,7 @@ import 'package:app/src/navigation/features/printers/printers_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class PrintersController extends ChangeNotifier {
+class ReportsController extends ChangeNotifier {
   final PrintersRepository _printersRepository = PrintersRepositoryV1();
   final printers = ValueNotifier(<PrintersEntity>[]);
   List<bool> _selected = [];
@@ -29,7 +29,6 @@ class PrintersController extends ChangeNotifier {
         'StackTrace: ${e.stackTrace}',
         name: 'printersRepository.list',
       );
-      print(e.message);
     }
   }
 }

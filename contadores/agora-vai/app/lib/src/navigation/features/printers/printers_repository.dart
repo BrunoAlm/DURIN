@@ -10,7 +10,7 @@ class PrintersRepositoryV1 implements PrintersRepository {
 
   @override
   Future<List<PrintersEntity>> list() async {
-    var result = await _apiService.get(path: "/impressoras");
+    var result = await _apiService.get(path: "/api/impressoras");
     return (result as List).map((e) => PrintersEntity.fromMap(e)).toList();
   }
 }
