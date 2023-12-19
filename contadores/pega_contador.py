@@ -71,24 +71,27 @@ def pega_contador_zebras():
 
 
 def pega_contador_multifuncionais():
+
+    paraPegar = ['217R', 'FMO5', 'JMV8', '44HH', 'DAS9', 'EK10', 'XN40', 'Q505', '153Q']
+
     for (i) in range(qtd_impressoras_multifuncionais):
         print('Lendo contador da impressora {}...'.format(
             nomes_multifuncionais[i]))
         ip = ips_multifuncionais[i]
         nome = nomes_multifuncionais[i]
         selb = selbs_multifuncionais[i]
-
+        if paraPegar.__contains__(selb):
         # Le o contador e coloca no na lista contadores_multifuncionais
-        contadores_multifuncionais.append(
-            ler_contador_multifuncionais(ip, nome, selb))
-        print('Concluído!\n')
+            contadores_multifuncionais.append(
+                ler_contador_multifuncionais(ip, nome, selb))
+            print('Concluído!\n')
 
     return contadores_multifuncionais
 
 
 # def gera_zebra_email():
 #     enviar_email(html(pega_contador_zebras(), 'zebra', selbetti=True))
-# enviar_email(html(pega_contador_zebras(), 'zebra', selbetti=True))
+#enviar_email(html(pega_contador_zebras(), 'zebra', selbetti=True))
 
 # def gera_zebra_html():
 #     html(pega_contador_zebras(), 'zebra', selbetti=False)

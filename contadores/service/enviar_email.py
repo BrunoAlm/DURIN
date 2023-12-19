@@ -3,7 +3,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 # dotenv serve para carregar as variáveis de ambiente do arquivo .env
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
 
 def enviar_email(html_gerado):
