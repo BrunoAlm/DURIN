@@ -1,25 +1,47 @@
 from pysnmp.hlapi import *
+def tratar_mensagens(error):
+    if "No Such Object currently exists at this OID" in error:
+        print("Tratando erro: OID incorreto")
+        return "OID incorreto"
+    
+    if "No SNMP response received before timeout" in error:
+        print("Tratando erro: Inacessível")
+        return "Inacessível"
+
+    if "argument of type 'RequestTimedOut' is not iterable" in error:
+        print("Tratando erro: Inacessível")
+        return "Inacessível"
+    
+    print(f"Erro desconhecido: {error}")
+    return f"Erro: {error}"
 
 def snmpwalk(ip, oid):
-    erroIndicado, statusErro, _, valores = next(
-        getCmd(SnmpEngine(),
-               CommunityData('public'),
-               UdpTransportTarget((ip, 161)),
-               ContextData(),
-               ObjectType(ObjectIdentity(oid)))
-    )
-
-    if erroIndicado:
-        return f"Erro: {erroIndicado}"
+    if ip == "0.0.0.0":
+        return "N/A"  # Define o contador como zero se o IP for 0.0.0.0
     else:
-        if statusErro:
-            return f"Erro: {statusErro.prettyPrint()}"
-        else:
-            for valorEncontrado in valores:
-                valorCompleto = valorEncontrado.prettyPrint()
-                valor = valorCompleto.split('=')[-1].strip()
-                return valor
-                
+        try:
+            erroIndicado, statusErro, _, valores = next(
+                getCmd(SnmpEngine(),
+                       CommunityData('public'),
+                       UdpTransportTarget((ip, 161)),
+                       ContextData(),
+                       ObjectType(ObjectIdentity(oid)))
+            )
+
+            if erroIndicado:
+                return tratar_mensagens(erroIndicado)
+            else:
+                if statusErro:
+                    return tratar_mensagens(statusErro.prettyPrint())
+                else:
+                    for valorEncontrado in valores:
+                        valorCompleto = valorEncontrado.prettyPrint()
+                        valor = valorCompleto.split('=')[-1].strip()
+                        print(f'sem erro: {valor}')
+                        return valor
+        except Exception as e:
+            return tratar_mensagens(str(e))
+
 # Impressora teste
 host = '10.1.3.5'
 
