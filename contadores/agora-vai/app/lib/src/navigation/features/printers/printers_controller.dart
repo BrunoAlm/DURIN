@@ -45,13 +45,14 @@ class PrintersController extends ChangeNotifier {
     List<List<dynamic>> printerData = [];
 
     printerData
-        .add(['Nome', 'IP', 'Departamento', 'Contador', 'Data de Coleta']);
+        .add(['Nome', 'IP', 'Departamento', 'Contador Anterior', 'Contador Atual', 'Data de Coleta']);
 
     for (var printer in printers) {
       printerData.add([
         printer.name,
         printer.ip,
         printer.department,
+        printer.counters.elementAt(printer.counters.length - 2).counter,
         printer.counters.last.counter,
         printer.counters.last.collectedDate,
       ]);
