@@ -9,7 +9,7 @@ class Contador(Base):
     __tablename__ = 'contadores'
 
     id = Column(Integer, primary_key=True)
-    contador = Column(Integer)
+    contador = Column(String(15))
     data_registro = Column(DateTime)
     impressora_id = Column(Integer, ForeignKey('impressoras.id'))
 

@@ -1,10 +1,10 @@
-import 'package:app/src/navigation/features/reports/reports_controller.dart';
+import 'package:app/src/navigation/features/printers/printers_controller.dart';
 import 'package:app/src/navigation/features/printers/printers_entity.dart';
 import 'package:flutter/material.dart';
 
 class ReportsTable extends StatefulWidget {
   final List<PrintersEntity> printers;
-  final ReportsController ct;
+  final PrintersController ct;
 
   const ReportsTable({
     super.key,
@@ -25,7 +25,10 @@ class _ReportsTableState extends State<ReportsTable> {
       child: AnimatedBuilder(
           animation: ct,
           builder: (context, value) {
-            var columnTextStyle = Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold);
+            var columnTextStyle = Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(fontWeight: FontWeight.bold);
             return DataTable(
               columns: <DataColumn>[
                 DataColumn(
@@ -48,8 +51,9 @@ class _ReportsTableState extends State<ReportsTable> {
                 printers.length,
                 (index) {
                   var printer = printers[index];
-                  var selected = ct.isSelected[index];
+                  var selected = ct.isPrinterSelected[index];
                   var date = printer.counters.last.collectedDate;
+                  var counter = printer.counters.last.counter;
                   return DataRow(
                     cells: <DataCell>[
                       DataCell(
@@ -62,11 +66,10 @@ class _ReportsTableState extends State<ReportsTable> {
                         Text(printer.department),
                       ),
                       DataCell(
-                        Text(printer.counters.last.counter.toString()),
+                        Text(counter.toString()),
                       ),
-                      DataCell(
-                        Text('${date.hour}:${date.minute}  ${date.day}/${date.month}/${date.year}')
-                      ),
+                      DataCell(Text(
+                          '${date.hour}:${date.minute}  ${date.day}/${date.month}/${date.year}')),
                     ],
                     selected: selected,
                     onSelectChanged: (value) {

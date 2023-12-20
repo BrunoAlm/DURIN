@@ -1,6 +1,6 @@
-from fastapi import APIRouter
-from .repositories import adicionar_contador, listar_impressoras, update_impressora
-from typing import Optional
+from fastapi import APIRouter, HTTPException
+from .repositories import adicionar_contador, listar_impressoras, atualizar_impressora, atualizar_contador
+from typing import Optional, List
 from pydantic import BaseModel
 
 class ContadorInput(BaseModel):
@@ -28,9 +28,17 @@ async def list_printers():
 async def add_contador(printer_data: ContadorInput):
     return adicionar_contador(printer_data.impressora_id, printer_data.contador_atual)
 
+@router.post("/api/impressoras")
+async def add_contador(printers_id: dict):
+    print(printers_id)
+    if not printers_id.get("printers_id"):
+        raise HTTPException(status_code=422, detail="Nenhum ID de impressora fornecido")
+    ids = printers_id.get("printers_id")
+    return atualizar_contador(ids)
+
 @router.put("/api/impressoras")
 async def update_printers(printer_data: PrinterUpdate):
-    return update_impressora(
+    return atualizar_impressora(
         printer_data.impressora_id,
         printer_data.nome,
         printer_data.ip,

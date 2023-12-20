@@ -1,7 +1,9 @@
 from .models import Impressora, Contador
 from .database import SessionLocal
 from fastapi import HTTPException
-from typing import Optional
+from typing import Optional, List
+from .services.get_multifuncional import get_info_multi, oidContadorMulti, oidNivelTonerMulti
+from .services.get_zebra import get_info_zebra
 
 # Função para adicionar um contador a uma impressora específica
 def adicionar_contador(impressora_id: int, contador_atual: int):
@@ -67,7 +69,7 @@ def listar_impressoras():
         db.close()
 
 # Rota pra atualizar os valores individuais da impressora
-def update_impressora(
+def atualizar_impressora(
     impressora_id: int,
     nome: Optional[str] = None,
     ip: Optional[str] = None,
@@ -96,5 +98,31 @@ def update_impressora(
         db.commit()
 
         return {"message": "Impressora atualizada com sucesso", "impressora_id": impressora_id}
+    finally:
+        db.close()
+
+# Atualiza os contadores em tempo real
+def atualizar_contador(printers_id: dict):
+    db = SessionLocal()
+    try:
+        for impressora_id in printers_id:
+            print(impressora_id)
+            impressora = db.query(Impressora).filter(Impressora.id == impressora_id).first()
+            if not impressora:
+                raise HTTPException(status_code=404, detail=f"ImpressoraId {impressora_id} não encontrada")
+
+            if impressora.tipo == "multifuncional":
+                contador_atual = get_info_multi(impressora.ip, oidContadorMulti)
+                nivel_toner = get_info_multi(impressora.ip, oidNivelTonerMulti)
+                impressora.contadores.append(Contador(contador=contador_atual))
+                impressora.nivel_toner = nivel_toner
+
+            elif impressora.tipo == "zebra":
+                contador_atual = get_info_zebra(impressora.ip)
+                impressora.contadores.append(Contador(contador=contador_atual))
+
+        db.commit()
+        return {'message': 'Impressoras atualizadas com sucesso!'}
+
     finally:
         db.close()
