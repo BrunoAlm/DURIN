@@ -53,6 +53,7 @@ class _PrintersPageState extends State<PrintersPage> {
         var multifPrinters = filterPrintersName(printers, ["impxr", "impxm"]);
         return SingleChildScrollView(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               ExpansionTile(
                   title: Text(
