@@ -10,7 +10,7 @@ class PrintersEntity {
   final String tonerLevel;
   final String model;
   final String status;
-  final List<CountersEntity> counters;
+  final List<CountersEntity?>? counters;
 
   PrintersEntity({
     required this.id,
@@ -22,21 +22,20 @@ class PrintersEntity {
     required this.tonerLevel,
     required this.model,
     required this.status,
-    required this.counters,
+    this.counters,
   });
 
-  Map<String, dynamic> toMap() {
+  static Map<String, dynamic> toMap(PrintersEntity printer) {
     return <String, dynamic>{
-      'id': id,
-      'nome': name,
-      'ip': ip,
-      'selb': selb,
-      'setor': department,
-      'tipo': type,
-      'nivel_toner': tonerLevel,
-      'modelo': model,
-      'status': status,
-      'contadores': counters.map((e) => e.toMap() )
+      'impressora_id': printer.id,
+      'nome': printer.name,
+      'ip': printer.ip,
+      'selb': printer.selb,
+      'setor': printer.department,
+      'tipo': printer.type,
+      'nivel_toner': printer.tonerLevel,
+      'modelo': printer.model,
+      'status': printer.status,
     };
   }
 
@@ -56,4 +55,25 @@ class PrintersEntity {
           .toList(),
     );
   }
+
+  PrintersEntity copyWith(int id,
+          {String? name,
+          String? ip,
+          String? selb,
+          String? department,
+          String? type,
+          String? tonerLevel,
+          String? model,
+          String? status}) =>
+      PrintersEntity(
+        id: id,
+        name: name ?? this.name,
+        ip: ip ?? this.ip,
+        selb: selb ?? this.selb,
+        department: department ?? this.department,
+        type: type ?? this.type,
+        tonerLevel: tonerLevel ?? this.tonerLevel,
+        model: model ?? this.model,
+        status: status ?? this.status,
+      );
 }
