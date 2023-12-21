@@ -55,9 +55,9 @@ class _ReportsTableState extends State<ReportsTable> {
                 (index) {
                   var printer = printers[index];
                   var selected = ct.isPrinterSelected[index];
-                  var date = printer.counters.last.collectedDate;
-                  var latestCounter = printer.counters.last.counter;
-                  var penultimateCounter = printer.counters.elementAt(printer.counters.length - 2).counter;
+                  var date = printer.counters!.last!.collectedDate;
+                  var latestCounter = printer.counters!.last!.counter;
+                  var penultimateCounter = printer.counters!.elementAt(printer.counters!.length - 2)!.counter;
                   return DataRow(
                     cells: <DataCell>[
                       DataCell(
