@@ -1,5 +1,5 @@
-import 'dart:convert';
 import 'dart:developer';
+import 'dart:typed_data';
 import 'package:app/main.dart';
 import 'package:app/src/navigation/features/printers/printers_entity.dart';
 import 'package:app/src/navigation/features/printers/printers_repository.dart';
@@ -7,7 +7,7 @@ import 'package:csv/csv.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+// import 'dart:html' as html;
 
 class PrintersController extends ChangeNotifier {
   final PrintersRepository _printersRepository = di();
@@ -41,11 +41,17 @@ class PrintersController extends ChangeNotifier {
     _printersRepository.updatePrinters(body);
   }
 
-  String _generateCSV(List<PrintersEntity> printers) {
+  Uint8List _generateCSV(List<PrintersEntity> printers) {
     List<List<dynamic>> printerData = [];
 
-    printerData
-        .add(['Nome', 'IP', 'Departamento', 'Contador Anterior', 'Contador Atual', 'Data de Coleta']);
+    printerData.add([
+      'Nome',
+      'IP',
+      'Departamento',
+      'Contador Anterior',
+      'Contador Atual',
+      'Data de Coleta'
+    ]);
 
     for (var printer in printers) {
       printerData.add([
@@ -58,27 +64,29 @@ class PrintersController extends ChangeNotifier {
       ]);
     }
 
-    const csvConverter = ListToCsvConverter();
-    final csvData = csvConverter.convert(printerData);
+    final csvData =
+        const ListToCsvConverter(fieldDelimiter: ',').convert(printerData);
 
-    return csvData;
+    // Converte os dados do CSV diretamente para Uint8List
+    final encodedData = Uint8List.fromList(csvData.codeUnits);
+
+    return encodedData; // Retorna os dados como Uint8List
   }
 
-  void _downloadFile(String content, String fileName) {
-    final encodedContent = utf8.encode(content);
-    final blob = html.Blob([encodedContent]);
+  // void _downloadFile(Uint8List content, String fileName) {
+  //   final blob = html.Blob([content]);
 
-    // Cria a URL do arquivo
-    final url = html.Url.createObjectUrlFromBlob(blob);
+  //   // Cria a URL do arquivo
+  //   final url = html.Url.createObjectUrlFromBlob(blob);
 
-    // Realizar o download
-    html.AnchorElement(href: url)
-      ..setAttribute('download', fileName)
-      ..click();
+  //   // Realiza o download
+  //   html.AnchorElement(href: url)
+  //     ..setAttribute('download', fileName)
+  //     ..click();
 
-    // Libera a URL após o download
-    html.Url.revokeObjectUrl(url);
-  }
+  //   // Libera a URL após o download
+  //   html.Url.revokeObjectUrl(url);
+  // }
 
   void generateReport(String fileName) {
     List<PrintersEntity> selectedPrinters = [];
@@ -88,7 +96,7 @@ class PrintersController extends ChangeNotifier {
         selectedPrinters.add(allPrinters[i]);
       }
     }
-    String csv = _generateCSV(selectedPrinters);
-    _downloadFile(csv, fileName);
+    Uint8List csv = _generateCSV(selectedPrinters); // Alterado para Uint8List
+    // _downloadFile(csv, fileName);
   }
 }
