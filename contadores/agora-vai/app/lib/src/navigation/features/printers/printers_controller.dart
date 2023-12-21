@@ -7,7 +7,7 @@ import 'package:csv/csv.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 // ignore: avoid_web_libraries_in_flutter
-// import 'dart:html' as html;
+import 'dart:html' as html;
 
 class PrintersController extends ChangeNotifier {
   final PrintersRepository _printersRepository = di();
@@ -36,9 +36,14 @@ class PrintersController extends ChangeNotifier {
     }
   }
 
-  void updatePrinters(List<int> printersId) {
+  void updateCounters(List<int> printersId) {
     var body = {'printers_id': printersId};
-    _printersRepository.updatePrinters(body);
+    _printersRepository.updateCounters(body);
+  }
+
+  void updatePrinters(PrintersEntity printer) {
+    var body = PrintersEntity.toMap(printer);
+    _printersRepository.updatePrinter(body);
   }
 
   Uint8List _generateCSV(List<PrintersEntity> printers) {
@@ -58,9 +63,9 @@ class PrintersController extends ChangeNotifier {
         printer.name,
         printer.ip,
         printer.department,
-        printer.counters.elementAt(printer.counters.length - 2).counter,
-        printer.counters.last.counter,
-        printer.counters.last.collectedDate,
+        printer.counters!.elementAt(printer.counters!.length - 2)!.counter,
+        printer.counters!.last!.counter,
+        printer.counters!.last!.collectedDate,
       ]);
     }
 
@@ -73,20 +78,20 @@ class PrintersController extends ChangeNotifier {
     return encodedData; // Retorna os dados como Uint8List
   }
 
-  // void _downloadFile(Uint8List content, String fileName) {
-  //   final blob = html.Blob([content]);
+  void _downloadFile(Uint8List content, String fileName) {
+    final blob = html.Blob([content]);
 
-  //   // Cria a URL do arquivo
-  //   final url = html.Url.createObjectUrlFromBlob(blob);
+    // Cria a URL do arquivo
+    final url = html.Url.createObjectUrlFromBlob(blob);
 
-  //   // Realiza o download
-  //   html.AnchorElement(href: url)
-  //     ..setAttribute('download', fileName)
-  //     ..click();
+    // Realiza o download
+    html.AnchorElement(href: url)
+      ..setAttribute('download', fileName)
+      ..click();
 
-  //   // Libera a URL após o download
-  //   html.Url.revokeObjectUrl(url);
-  // }
+    // Libera a URL após o download
+    html.Url.revokeObjectUrl(url);
+  }
 
   void generateReport(String fileName) {
     List<PrintersEntity> selectedPrinters = [];
@@ -97,6 +102,6 @@ class PrintersController extends ChangeNotifier {
       }
     }
     Uint8List csv = _generateCSV(selectedPrinters); // Alterado para Uint8List
-    // _downloadFile(csv, fileName);
+    _downloadFile(csv, fileName);
   }
 }
