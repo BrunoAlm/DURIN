@@ -14,8 +14,8 @@ class ApiErro implements Exception {
 
 class ApiService {
   final _client = Dio();
-  // final String host = "http://contadores.durin.com.br";
-  final String host = "http://localhost:8000";
+  final String host = "http://contadores.durin.com.br";
+  // final String host = "http://localhost:8000";
 
   Future get({required String path}) async {
     final response = await _client.get("$host$path");
