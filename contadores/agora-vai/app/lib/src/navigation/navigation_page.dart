@@ -65,7 +65,7 @@ class _NavigationPageState extends State<NavigationPage> {
               for (var printer in printers) {
                 printersId.add(printer.id);
               }
-              _printersCt.updatePrinters(printersId);
+              _printersCt.updateCounters(printersId);
             },
             child: const Text('Sim'),
           ),
@@ -95,6 +95,7 @@ class _NavigationPageState extends State<NavigationPage> {
           ),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             NavigationRail(
               selectedIndex: _navStore.actualPage,
