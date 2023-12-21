@@ -8,7 +8,7 @@ import 'package:app/src/navigation/navigation_store.dart';
 import 'package:flutter/material.dart';
 
 class NavigationPage extends StatefulWidget {
-  const NavigationPage({Key? key}) : super(key: key);
+  const NavigationPage({super.key});
 
   @override
   State<NavigationPage> createState() => _NavigationPageState();
