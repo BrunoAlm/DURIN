@@ -38,7 +38,7 @@ class Impressora(Base):
     selb = Column(String(20))
     setor = Column(String(20))
     tipo = Column(String(20))
-    nivel_toner = Column(Integer)
+    nivel_toner = Column(String(15))
     modelo = Column(String(20))
     status = Column(String(30))
     
