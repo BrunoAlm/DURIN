@@ -1,3 +1,4 @@
+import 'package:app/src/navigation/features/printers/components/edit_printers_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/navigation/features/printers/printers_entity.dart';
 
@@ -13,42 +14,7 @@ class _PrintersCardsState extends State<PrintersCards> {
   void editPrinter(PrintersEntity printer) {
     showDialog(
       context: context,
-      builder: (context) => SimpleDialog(
-        title: const Text('Editar impressora'),
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Form(
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('Confirmar')),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('Cancelar')),
-              ],
-            ),
-          )
-        ],
-      ),
+      builder: (context) => const EditPrintersDialog(),
     );
   }
 
@@ -94,6 +60,7 @@ class _PrintersCardsState extends State<PrintersCards> {
                   Text(printer.model),
                   Text(printer.selb),
                   Text(printer.status),
+                  Text(printer.type),
                 ],
               ),
             ),
