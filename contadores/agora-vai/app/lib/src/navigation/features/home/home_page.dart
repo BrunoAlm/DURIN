@@ -6,7 +6,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SizedBox(
-      child: Text('Home Page Teste'),
+      child: Text('Home Page'),
     );
   }
 }
