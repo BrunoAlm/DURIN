@@ -1,4 +1,6 @@
 import 'package:app/main.dart';
+import 'package:app/src/core/theme.dart';
+import 'package:app/src/navigation/features/printers/components/branches_card.dart';
 import 'package:app/src/navigation/features/printers/components/printers_cards.dart';
 import 'package:app/src/navigation/features/printers/printers_controller.dart';
 import 'package:app/src/navigation/features/printers/printers_entity.dart';
@@ -52,43 +54,100 @@ class _PrintersPageState extends State<PrintersPage> {
         var zebras = printers.where((p) => p.type == 'zebra').toList();
         var multifuns =
             printers.where((p) => p.type == 'multifuncional').toList();
-            
-        var maceioZebras = filterPrintersName(zebras, ["impzm"]);
-        var maceioMultifuns = filterPrintersName(multifuns, ["impxm"]);
 
-        TextStyle titleStyle = Theme.of(context)
-            .textTheme
-            .titleLarge!
-            .copyWith(fontWeight: FontWeight.bold);
+        var maceioZebras = filterPrintersName(zebras, ["impzm"]);
+        var araquariZebras = filterPrintersName(zebras, ["impzb"]);
+        var maceioMultifuns = filterPrintersName(multifuns, ["impxm"]);
+        var araquariMultifuns = filterPrintersName(multifuns, ["impxr"]);
 
         return SingleChildScrollView(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ExpansionTile(
-                  title: Text(
-                    'Multifuncionais - Araquari',
-                    style: titleStyle,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  BranchesCard(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => Scaffold(
+                            appBar: AppBar(
+                                title:
+                                    const Text('Impressoras de Araquari - SC')),
+                            body: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Text('Multifuncionais',
+                                      style: CustomTextTheme.titleStyle),
+                                  PrintersCards(printers: araquariMultifuns),
+                                  const SizedBox(height: 20),
+                                  Text('Zebras',
+                                      style: CustomTextTheme.titleStyle),
+                                  PrintersCards(printers: araquariZebras),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    title: 'Araquari - SC',
                   ),
-                  children: [PrintersCards(printers: multifuns)]),
-              ExpansionTile(
-                  title: Text(
-                    'Zebras - Araquari',
-                    style: titleStyle,
+                  const SizedBox(width: 15),
+                  BranchesCard(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => Scaffold(
+                            appBar: AppBar(
+                                title:
+                                    const Text('Impressoras de Maceió - AL')),
+                            body: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Text('Multifuncionais',
+                                      style: CustomTextTheme.titleStyle),
+                                  PrintersCards(printers: maceioMultifuns),
+                                  const SizedBox(height: 20),
+                                  Text('Zebras',
+                                      style: CustomTextTheme.titleStyle),
+                                  PrintersCards(printers: maceioZebras),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    title: 'Maceió - AL',
                   ),
-                  children: [PrintersCards(printers: zebras)]),
-              ExpansionTile(
-                  title: Text(
-                    'Multifuncionais - Maceio',
-                    style: titleStyle,
-                  ),
-                  children: [PrintersCards(printers: maceioMultifuns)]),
-              ExpansionTile(
-                  title: Text(
-                    'Zebras - Maceio',
-                    style: titleStyle,
-                  ),
-                  children: [PrintersCards(printers: maceioZebras)]),
+                ],
+              ),
+              // ExpansionTile(
+              //     title: Text(
+              //       'Multifuncionais - Araquari',
+              //       style: titleStyle,
+              //     ),
+              //     children: [PrintersCards(printers: multifuns)]),
+              // ExpansionTile(
+              //     title: Text(
+              //       'Zebras - Araquari',
+              //       style: titleStyle,
+              //     ),
+              //     children: [PrintersCards(printers: zebras)]),
+              // ExpansionTile(
+              //     title: Text(
+              //       'Multifuncionais - Maceio',
+              //       style: titleStyle,
+              //     ),
+              //     children: [PrintersCards(printers: maceioMultifuns)]),
+              // ExpansionTile(
+              //     title: Text(
+              //       'Zebras - Maceio',
+              //       style: titleStyle,
+              //     ),
+              //     children: [PrintersCards(printers: maceioZebras)]),
             ],
           ),
         );

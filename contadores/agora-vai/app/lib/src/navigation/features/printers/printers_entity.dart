@@ -56,15 +56,16 @@ class PrintersEntity {
     );
   }
 
-  PrintersEntity copyWith(int id,
-          {String? name,
-          String? ip,
-          String? selb,
-          String? department,
-          String? type,
-          String? tonerLevel,
-          String? model,
-          String? status}) =>
+  PrintersEntity copyWith({
+    String? name,
+    String? ip,
+    String? selb,
+    String? department,
+    String? type,
+    String? tonerLevel,
+    String? model,
+    String? status,
+  }) =>
       PrintersEntity(
         id: id,
         name: name ?? this.name,
@@ -75,5 +76,6 @@ class PrintersEntity {
         tonerLevel: tonerLevel ?? this.tonerLevel,
         model: model ?? this.model,
         status: status ?? this.status,
+        counters: counters,
       );
 }

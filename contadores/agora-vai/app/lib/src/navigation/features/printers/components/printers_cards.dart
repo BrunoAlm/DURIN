@@ -14,7 +14,7 @@ class _PrintersCardsState extends State<PrintersCards> {
   void editPrinter(PrintersEntity printer) {
     showDialog(
       context: context,
-      builder: (context) => const EditPrintersDialog(),
+      builder: (context) => EditPrintersDialog(printer: printer),
     );
   }
 
@@ -57,10 +57,7 @@ class _PrintersCardsState extends State<PrintersCards> {
                   ),
                   Text(printer.department),
                   Text(printer.ip),
-                  Text(printer.model),
                   Text(printer.selb),
-                  Text(printer.status),
-                  Text(printer.type),
                 ],
               ),
             ),
