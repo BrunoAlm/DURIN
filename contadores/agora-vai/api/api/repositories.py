@@ -76,7 +76,7 @@ def atualizar_impressora(
     selb: Optional[str] = None,
     setor: Optional[str] = None,
     tipo: Optional[str] = None,
-    nivel_toner: Optional[int] = None,
+    nivel_toner: Optional[str] = None,
     modelo: Optional[str] = None,
     status: Optional[str] = None
     ) :
