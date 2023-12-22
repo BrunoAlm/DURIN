@@ -49,36 +49,46 @@ class _PrintersPageState extends State<PrintersPage> {
         if (printers.isEmpty) {
           return const Center(child: CircularProgressIndicator());
         }
-        var zebraPrinters = filterPrintersName(printers, ["impzb", "impzm"]);
-        var multifPrinters = filterPrintersName(printers, ["impxr", "impxm"]);
+        var zebras = printers.where((p) => p.type == 'zebra').toList();
+        var multifuns =
+            printers.where((p) => p.type == 'multifuncional').toList();
+            
+        var maceioZebras = filterPrintersName(zebras, ["impzm"]);
+        var maceioMultifuns = filterPrintersName(multifuns, ["impxm"]);
+
+        TextStyle titleStyle = Theme.of(context)
+            .textTheme
+            .titleLarge!
+            .copyWith(fontWeight: FontWeight.bold);
+
         return SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ExpansionTile(
                   title: Text(
-                    'Multifuncionais',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(fontWeight: FontWeight.bold),
+                    'Multifuncionais - Araquari',
+                    style: titleStyle,
                   ),
-                  children: [
-                    PrintersCards(
-                      printers: multifPrinters,
-                    ),
-                  ]),
+                  children: [PrintersCards(printers: multifuns)]),
               ExpansionTile(
                   title: Text(
-                    'Zebras',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(fontWeight: FontWeight.bold),
+                    'Zebras - Araquari',
+                    style: titleStyle,
                   ),
-                  children: [
-                    PrintersCards(printers: zebraPrinters),
-                  ]),
+                  children: [PrintersCards(printers: zebras)]),
+              ExpansionTile(
+                  title: Text(
+                    'Multifuncionais - Maceio',
+                    style: titleStyle,
+                  ),
+                  children: [PrintersCards(printers: maceioMultifuns)]),
+              ExpansionTile(
+                  title: Text(
+                    'Zebras - Maceio',
+                    style: titleStyle,
+                  ),
+                  children: [PrintersCards(printers: maceioZebras)]),
             ],
           ),
         );
