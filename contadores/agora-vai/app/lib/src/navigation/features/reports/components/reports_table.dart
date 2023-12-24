@@ -1,5 +1,5 @@
 import 'package:app/src/navigation/features/printers/printers_controller.dart';
-import 'package:app/src/navigation/features/printers/printers_entity.dart';
+import 'package:app/src/navigation/features/printers/entities/printers_entity.dart';
 import 'package:flutter/material.dart';
 
 class ReportsTable extends StatefulWidget {

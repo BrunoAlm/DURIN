@@ -1,4 +1,4 @@
-import 'package:app/src/core/theme.dart';
+import 'package:app/src/core/helpers.dart';
 import 'package:flutter/material.dart';
 
 class BranchesCard extends StatelessWidget {
@@ -15,9 +15,10 @@ class BranchesCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(28.0),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               const Icon(Icons.print_rounded, size: 32),
-              Text(title, style: CustomTextTheme.titleStyle),
+              Text(title, style: Helpers.titleStyle),
             ],
           ),
         ),

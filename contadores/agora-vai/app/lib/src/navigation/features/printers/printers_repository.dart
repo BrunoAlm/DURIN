@@ -1,5 +1,5 @@
 import 'package:app/src/core/api_service.dart';
-import 'package:app/src/navigation/features/printers/printers_entity.dart';
+import 'package:app/src/navigation/features/printers/entities/printers_entity.dart';
 
 abstract interface class PrintersRepository {
   Future<List<PrintersEntity>> list();

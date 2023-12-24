@@ -1,13 +1,13 @@
 import 'dart:developer';
-import 'dart:typed_data';
+// import 'dart:typed_data';
 import 'package:app/main.dart';
-import 'package:app/src/navigation/features/printers/printers_entity.dart';
+import 'package:app/src/navigation/features/printers/entities/printers_entity.dart';
 import 'package:app/src/navigation/features/printers/printers_repository.dart';
-import 'package:csv/csv.dart';
+// import 'package:csv/csv.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+// import 'dart:html' as html;
 
 class PrintersController extends ChangeNotifier {
   final PrintersRepository _printersRepository = di();
@@ -23,7 +23,7 @@ class PrintersController extends ChangeNotifier {
 
   void init() async {
     try {
-      printers.value = await _printersRepository.list();
+      printers.value = await listPrinters();
       _selectedPrinters = List.filled(printers.value.length, false);
     } on DioException catch (e) {
       log(
@@ -36,6 +36,10 @@ class PrintersController extends ChangeNotifier {
     }
   }
 
+  Future<List<PrintersEntity>> listPrinters() async {
+    return await _printersRepository.list();
+  }
+
   void updateCounters(List<int> printersId) {
     var body = {'printers_id': printersId};
     _printersRepository.updateCounters(body);
@@ -46,52 +50,52 @@ class PrintersController extends ChangeNotifier {
     _printersRepository.updatePrinter(body);
   }
 
-  Uint8List _generateCSV(List<PrintersEntity> printers) {
-    List<List<dynamic>> printerData = [];
+  // Uint8List _generateCSV(List<PrintersEntity> printers) {
+  //   List<List<dynamic>> printerData = [];
 
-    printerData.add([
-      'Nome',
-      'IP',
-      'Departamento',
-      'Contador Anterior',
-      'Contador Atual',
-      'Data de Coleta'
-    ]);
+  //   printerData.add([
+  //     'Nome',
+  //     'IP',
+  //     'Departamento',
+  //     'Contador Anterior',
+  //     'Contador Atual',
+  //     'Data de Coleta'
+  //   ]);
 
-    for (var printer in printers) {
-      printerData.add([
-        printer.name,
-        printer.ip,
-        printer.department,
-        printer.counters!.elementAt(printer.counters!.length - 2)!.counter,
-        printer.counters!.last!.counter,
-        printer.counters!.last!.collectedDate,
-      ]);
-    }
+  //   for (var printer in printers) {
+  //     printerData.add([
+  //       printer.name,
+  //       printer.ip,
+  //       printer.department,
+  //       printer.counters!.elementAt(printer.counters!.length - 2)!.counter,
+  //       printer.counters!.last!.counter,
+  //       printer.counters!.last!.collectedDate,
+  //     ]);
+  //   }
 
-    final csvData =
-        const ListToCsvConverter(fieldDelimiter: ',').convert(printerData);
+  //   final csvData =
+  //       const ListToCsvConverter(fieldDelimiter: ',').convert(printerData);
 
-    // Converte os dados do CSV diretamente para Uint8List
-    final encodedData = Uint8List.fromList(csvData.codeUnits);
+  //   // Converte os dados do CSV diretamente para Uint8List
+  //   final encodedData = Uint8List.fromList(csvData.codeUnits);
 
-    return encodedData; // Retorna os dados como Uint8List
-  }
+  //   return encodedData; // Retorna os dados como Uint8List
+  // }
 
-  void _downloadFile(Uint8List content, String fileName) {
-    final blob = html.Blob([content]);
+  // void _downloadFile(Uint8List content, String fileName) {
+  //   final blob = html.Blob([content]);
 
-    // Cria a URL do arquivo
-    final url = html.Url.createObjectUrlFromBlob(blob);
+  //   // Cria a URL do arquivo
+  //   final url = html.Url.createObjectUrlFromBlob(blob);
 
-    // Realiza o download
-    html.AnchorElement(href: url)
-      ..setAttribute('download', fileName)
-      ..click();
+  //   // Realiza o download
+  //   html.AnchorElement(href: url)
+  //     ..setAttribute('download', fileName)
+  //     ..click();
 
-    // Libera a URL após o download
-    html.Url.revokeObjectUrl(url);
-  }
+  //   // Libera a URL após o download
+  //   html.Url.revokeObjectUrl(url);
+  // }
 
   void generateReport(String fileName) {
     List<PrintersEntity> selectedPrinters = [];
@@ -101,7 +105,7 @@ class PrintersController extends ChangeNotifier {
         selectedPrinters.add(allPrinters[i]);
       }
     }
-    Uint8List csv = _generateCSV(selectedPrinters); // Alterado para Uint8List
-    _downloadFile(csv, fileName);
+    // Uint8List csv = _generateCSV(selectedPrinters); // Alterado para Uint8List
+    // _downloadFile(csv, fileName);
   }
 }

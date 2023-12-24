@@ -1,6 +1,6 @@
 import 'package:app/src/navigation/features/printers/components/edit_printers_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:app/src/navigation/features/printers/printers_entity.dart';
+import 'package:app/src/navigation/features/printers/entities/printers_entity.dart';
 
 class PrintersCards extends StatefulWidget {
   final List<PrintersEntity> printers;
