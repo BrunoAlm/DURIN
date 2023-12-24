@@ -1,4 +1,4 @@
-import 'package:app/src/navigation/features/printers/counters_entity.dart';
+import 'package:app/src/navigation/features/printers/entities/counters_entity.dart';
 
 class PrintersEntity {
   final int id;
