@@ -5,5 +5,8 @@ class Helpers {
     fontWeight: FontWeight.bold,
     fontSize: 22,
   );
-  static const List<String> branchesList = ["Araquari", "Maceió", "outra-test"];
+  static const List<String> branchesList = [
+    "Araquari",
+    "Maceió",
+  ];
 }

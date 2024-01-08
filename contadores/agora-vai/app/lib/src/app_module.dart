@@ -1,9 +1,10 @@
 
 import 'package:app/main.dart';
 import 'package:app/src/core/api_service.dart';
-import 'package:app/src/navigation/features/printers/printers_repository.dart';
-import 'package:app/src/navigation/features/printers/printers_controller.dart';
-import 'package:app/src/navigation/navigation_store.dart';
+import 'package:app/src/pages/features/printers/printers_repository.dart';
+import 'package:app/src/pages/features/printers/printers_controller.dart';
+import 'package:app/src/pages/features/reports/reports_controller.dart';
+import 'package:app/src/pages/navigation_store.dart';
 
 class AppModule {
   static void start() {
@@ -14,7 +15,8 @@ class AppModule {
     di.registerFactory<PrintersRepository>(() => PrintersRepositoryV1(di()));
 
     // Controllers || Stores
-    di.registerFactory(() => PrintersController());
+    di.registerLazySingleton(() => PrintersController());
     di.registerFactory(() => NavigationStore());
+    di.registerFactory(() => ReportsController());
   }
 }
