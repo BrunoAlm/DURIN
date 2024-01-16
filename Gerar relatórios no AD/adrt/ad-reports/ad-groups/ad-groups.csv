@@ -1,0 +1,143 @@
+﻿"Name","Description"
+"gp_mapeiapasta",
+"gp_liberausb",
+"Group Policy Creator Owners","Members in this group can modify group policy for the domain"
+"gp_testeblockusb",
+"gp_blocusb",
+"gp_actino",
+"gp_liberasesuite",
+"gp_installprograma",
+"Guests","Guests have the same access as members of the Users group by default, except for the Guest account which is further restricted"
+"KAVWSEE Administrators","Users of this group are granted full local and remote control over Kaspersky Anti-Virus 8.0 for Windows Servers Enterprise Edition."
+"Kaspersky_AKb968f0c0-199a-4e6f-b2a2-d8a6e74ca293",
+"KLAdmins","KLAdmins"
+"Key Admins","Members of this group can perform administrative actions on key objects within the domain."
+"IIS_IUSRS","Built-in group used by Internet Information Services."
+"Hyper-V Administrators","Members of this group have complete and unrestricted access to all features of Hyper-V."
+"Informadores WSUS","Administradores WSUS que só podem executar relatórios no servidor do Windows Server Update Services."
+"Incoming Forest Trust Builders","Members of this group can create incoming, one-way trusts to this forest"
+"G_WallpaperXP_CT",
+"G_SQLEXP12_CT",
+"G_Spark_CT",
+"G_Televendas_CT","G_Televendas_CT"
+"G_Suporte_CT",
+"G_Seguranca_CT","G_Guarita_CT"
+"G_RH_Maceio",
+"G_Server_CT",
+"G_Segurança_Maceio",
+"G_Ti_CT","G_Ti_CT"
+"G_Wallpaper1920x1080_CT",
+"G_Wallpaper1600x900_CT",
+"G_WallpaperHP_CT",
+"G_Wallpaper600x800_CT",
+"G_vCenter_Users_CT","G_vCenter_Users_CT"
+"G_vCenter_Admins_CT","G_vCenter_Admins_CT"
+"G_Wallpaper1280x1024_CT",
+"G_Vendas_CT","G_Vendas_CT"
+"KLOperators","KLOperators"
+"SQLServer2005SQLBrowserUser$DTISV003","Members in the group have the required access and privileges to be assigned as the log on account for the associated instance of SQL Server Browser in SQL Server 2005."
+"SQLServer2005MSSQLUser$DTISV003$SQLEXPRESS_1","Os membros do grupo têm o acesso e os privilégios necessários para serem atribuídos como a conta de logon referente à instância associada do SQL Server e do SQL Server FullText Search no SQL Server 2005."
+"SQLServerMSSQLServerADHelperUser$DTISV003","Members in the group have the required access and privileges to be assigned as the log on account for the associated instance of SQL Server Active Directory Helper in SQL Server 2008."
+"SQLServer2005SQLBrowserUser$DTISV007","Members in the group have the required access and privileges to be assigned as the log on account for the associated instance of SQL Server Browser."
+"SQLServer2005MSSQLUser$DTISV003$MICROSOFT##SSEE","Members in the group have the required access and privileges to be assigned as the log on account for the associated instance of Windows Internal Database."
+"SQLServer2005MSSQLUser$DTISV003$KAV_CS_ADMIN_KIT","Members in the group have the required access and privileges to be assigned as the log on account for the associated instance of SQL Server and SQL Server FullText Search in SQL Server 2005."
+"SQLServer2005MSSQLUser$DTISV003$SQLEXPRESS","Os membros do grupo têm o acesso e os privilégios necessários para serem atribuídos como a conta de logon referente à instância associada do SQL Server e do SQL Server FullText Search no SQL Server 2005."
+"SQLServer2005MSSQLUser$DTISV003$MSSQLSERVER","Os membros do grupo têm o acesso e os privilégios necessários para serem atribuídos como a conta de logon referente à instância associada do SQL Server e do SQL Server FullText Search no SQL Server 2005."
+"SQLServerMSSQLServerADHelperUser$DTISV007","Members in the group have the required access and privileges to be assigned as the log on account for the associated instance of SQL Server Active Directory Helper in SQL Server 2008."
+"Windows Authorization Access Group","Members of this group have access to the computed tokenGroupsGlobalAndUniversal attribute on User objects"
+"Usuários DHCP","Membros que possuem permissão somente de exibição para o serviço DHCP"
+"WSS_RESTRICTED_WPG_V4","Grupo para o administrador de farm do Microsoft SharePoint Foundation. Esse grupo é necessário para que o Serviço de Administração do Microsoft SharePoint Foundation funcione."
+"WinRMRemoteWMIUsers__","Members of this group can access WMI resources over management protocols (such as WS-Management via the Windows Remote Management service). This applies only to WMI namespaces that grant access to the user."
+"Terminal Server License Servers","Members of this group can update user accounts in Active Directory with information about license issuance, for the purpose of tracking and reporting TS Per User CAL usage"
+"Storage Replica Administrators","Members of this group have complete and unrestricted access to all features of Storage Replica."
+"Users","Users are prevented from making accidental or intentional system-wide changes and can run most applications"
+"TS Web Access Computers","Members of this group can query the list of RemoteApp programs on this computer, including those available through RemoteApp and Desktop Connection"
+"SQLServer2005MSSQLServerADHelperUser$DTISV003","Members in the group have the required access and privileges to be assigned as the log on account for the associated instance of SQL Server Active Directory Helper in SQL Server 2005."
+"Protected Users","Members of this group are afforded additional protections against authentication security threats. See http://go.microsoft.com/fwlink/?LinkId=298939 for more information."
+"Print Operators","Members can administer domain printers"
+"RDS Endpoint Servers","Servers in this group run virtual machines and host sessions where users RemoteApp programs and personal virtual desktops run. This group needs to be populated on servers running RD Connection Broker. RD Session Host servers and RD Virtualization Host servers used in the deployment need to be in this group."
+"RAS and IAS Servers","Servers in this group can access remote access properties of users"
+"Performance Log Users","Members of this group may schedule logging of performance counters, enable trace providers, and collect event traces both locally and via remote access to this computer"
+"Network Configuration Operators","Members in this group can have some administrative privileges to manage configuration of networking features"
+"Pre-Windows 2000 Compatible Access","A backward compatibility group which allows read access on all users and groups in the domain"
+"Performance Monitor Users","Members of this group can access performance counter data locally and remotely"
+"RDS Management Servers","Servers in this group can perform routine administrative actions on servers running Remote Desktop Services. This group needs to be populated on all servers in a Remote Desktop Services deployment. The servers running the RDS Central Management service must be included in this group."
+"Schema Admins","Designated administrators of the schema"
+"Replicator","Supports file replication in a domain"
+"SQLServer2005MSFTEUser$DTISV003$MICROSOFT##SSEE",
+"Server Operators","Members can administer domain servers"
+"Read-only Domain Controllers","Members of this group are Read-Only Domain Controllers in the domain"
+"RDS Remote Access Servers","Servers in this group enable users of RemoteApp programs and personal virtual desktops access to these resources. In Internet-facing deployments, these servers are typically deployed in an edge network. This group needs to be populated on servers running RD Connection Broker. RD Gateway servers and RD Web Access servers used in the deployment need to be in this group."
+"Remote Management Users","Members of this group can access WMI resources over management protocols (such as WS-Management via the Windows Remote Management service). This applies only to WMI namespaces that grant access to the user."
+"Remote Desktop Users","Members in this group are granted the right to logon remotely"
+"Domain Users","All domain users"
+"Domain Guests","All domain guests"
+"Enterprise Key Admins","Members of this group can perform administrative actions on key objects within the forest."
+"Enterprise Admins","Designated administrators of the enterprise"
+"Domain Admins","Designated administrators of the domain"
+"DnsUpdateProxy","DNS clients who are permitted to perform dynamic updates on behalf of some other clients (such as DHCP servers)."
+"Domain Controllers","All domain controllers in the domain"
+"Domain Computers","All workstations and servers joined to the domain"
+"Enterprise Read-only Domain Controllers","Members of this group are Read-Only Domain Controllers in the enterprise"
+"G_Compras_CT","G_Compras_CT"
+"G_Aprendiz_CT","G_Aprendiz_CT"
+"G_Custos_CT","G_Custos_CT"
+"G_Contabilidade_CT","G_Contabilidade_CT"
+"G_ADM_Maceio",
+"Event Log Readers","Members of this group can read event logs from local machine"
+"G_Almoxarifado_Maceio",
+"G_Almoxarifado_CT","G_Almoxarifado_CT"
+"DnsAdmins","DNS Administrators Group"
+"Administradores WSUS","Os Administradores WSUS podem administrar o servidor do Windows Server Update Services."
+"Administradores DHCP","Membros que possuem acesso administrativo ao Serviço DHCP"
+"Allowed RODC Password Replication Group","Members in this group can have their passwords replicated to all read-only domain controllers in the domain"
+"Administrators","Administrators have complete and unrestricted access to the computer/domain"
+"Account Operators","Members can administer domain user and group accounts"
+"Access Control Assistance Operators","Members of this group can remotely query authorization attributes and permissions for resources on this computer."
+"ADAuditPlusWS","ADAudit Plus"
+"ADAuditPlusFS","ADAudit Plus"
+"Backup Operators","Backup Operators can override security restrictions for the sole purpose of backing up or restoring files"
+"DHCP Administrators","Members who have administrative access to the DHCP Service"
+"Denied RODC Password Replication Group","Members in this group cannot have their passwords replicated to any read-only domain controllers in the domain"
+"Distributed COM Users","Members are allowed to launch, activate and use Distributed COM objects on this machine."
+"DHCP Users","Members who have view-only access to the DHCP service"
+"Certificate Service DCOM Access","Members of this group are allowed to connect to Certification Authorities in the enterprise"
+"Cert Publishers","Members of this group are permitted to publish certificates to the directory"
+"Cryptographic Operators","Members are authorized to perform cryptographic operations."
+"Cloneable Domain Controllers","Members of this group that are domain controllers may be cloned."
+"G_Diretoria_CT","G_Diretoria_CT"
+"G_Producao_CT","G_Producao_CT"
+"G_Processos_CT",
+"G_Produtos_CT","G_Produtos_CT"
+"G_Produção_Maceio",
+"G_Montagem_CT","G_Montagem_CT"
+"G_Melhoria_CT","G_Melhoria_CT"
+"G_Pcp_CT","G_Pcp_CT"
+"G_Montagem_Maceio",
+"G_Projetos_CT","G_Projetos_CT"
+"G_Recebimento_Maceio",
+"G_Recebimento_CT","G_Recebimento_CT"
+"G_Rh_CT","G_Rh_CT"
+"G_Recepcao_CT","G_Recepcao_CT"
+"G_Qualidade_CT","G_Qualidade_CT"
+"G_Qual_Produtos_CT","G_Qual_Produtos_CT"
+"G_Quimica_CT",
+"G_Qualidade_Maceio",
+"G_Marketing_CT","Grupo Marketing"
+"G_Faturamento_CT","G_Faturamento_CT"
+"G_Exportacao_CT",
+"G_Financeiro_CT","G_Financeiro_CT"
+"G_Ferramentaria_CT","G_Ferramentaria_CT"
+"G_Ecommerce_CT",
+"G_Diretoria_Maceio",
+"G_Expedição_Maceio",
+"G_Expedicao_CT","G_Expedicao_CT"
+"G_Fiscal_CT","G_Fiscal_CT"
+"G_Linux_Producao_CT","G_Linux_Producao_CT"
+"G_Juridico_CT",
+"G_Manutencao_CT","G_Manutencao_CT"
+"G_Logistica_CT","G_Logistica_CT"
+"G_Gerentes_CT","G_Gerentes_CT"
+"G_Ger.Industrial_CT",
+"G_Guarita_CT","G_Guarita_CT"
+"G_Gerentes_Maceio",
