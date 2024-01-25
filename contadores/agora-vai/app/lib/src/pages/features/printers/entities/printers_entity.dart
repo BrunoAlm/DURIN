@@ -10,6 +10,7 @@ class PrintersEntity {
   final String tonerLevel;
   final String model;
   final String status;
+  final String company;
   final List<CountersEntity?>? counters;
 
   PrintersEntity({
@@ -22,6 +23,7 @@ class PrintersEntity {
     required this.tonerLevel,
     required this.model,
     required this.status,
+    required this.company,
     this.counters,
   });
 
@@ -50,6 +52,7 @@ class PrintersEntity {
       tonerLevel: map['nivel_toner'].toString(),
       model: map['modelo'],
       status: map['status'],
+      company: map['empresa'],
       counters: (map['contadores'] as List)
           .map((e) => CountersEntity.fromMap(e))
           .toList(),
@@ -65,6 +68,7 @@ class PrintersEntity {
     String? tonerLevel,
     String? model,
     String? status,
+    String? company,
   }) =>
       PrintersEntity(
         id: id,
@@ -76,6 +80,7 @@ class PrintersEntity {
         tonerLevel: tonerLevel ?? this.tonerLevel,
         model: model ?? this.model,
         status: status ?? this.status,
+        company: company ?? this.company,
         counters: counters,
       );
 }

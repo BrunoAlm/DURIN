@@ -58,6 +58,7 @@ def listar_impressoras():
                 'nivel_toner': impressora.nivel_toner,
                 'modelo': impressora.modelo,
                 'status': impressora.status,
+                'empresa': impressora.empresa,
                 'contadores': contadores_serializados
             }
 

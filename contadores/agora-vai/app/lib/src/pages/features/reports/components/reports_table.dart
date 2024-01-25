@@ -34,69 +34,102 @@ class _ReportsTableState extends State<ReportsTable> {
         .copyWith(fontWeight: FontWeight.bold);
     return SingleChildScrollView(
       child: AnimatedBuilder(
-        animation: ct,
-        builder: (context, widget) {
-          return DataTable(
-            columns: <DataColumn>[
-              DataColumn(
-                label: Text('Impressoras', style: columnTextStyle),
+          animation: ct,
+          builder: (context, widget) {
+            return DataTable(
+              columns: <DataColumn>[
+                DataColumn(
+                  label: Text('', style: columnTextStyle),
+                ),
+                DataColumn(
+                  label: Text('Nome', style: columnTextStyle),
+                ),
+                DataColumn(
+                  label: Text('SELB', style: columnTextStyle),
+                ),
+                DataColumn(
+                  label: Text('IP', style: columnTextStyle),
+                ),
+                DataColumn(
+                  label: Text('Local', style: columnTextStyle),
+                ),
+                DataColumn(
+                  label: Text('Empresa', style: columnTextStyle),
+                ),
+                DataColumn(
+                  label: Text('Contador Anterior', style: columnTextStyle),
+                ),
+                DataColumn(
+                  label: Text('Contador Atual', style: columnTextStyle),
+                ),
+                DataColumn(
+                  label: Text('Data ultima coleta', style: columnTextStyle),
+                ),
+              ],
+              rows: List<DataRow>.generate(
+                printers.length,
+                (index) {
+                  PrintersEntity printer = printers[index];
+                  bool selected = ct.isPrinterSelected[index];
+
+                  DateTime date;
+                  if (printer.counters!.isNotEmpty) {
+                    date = printer.counters!.last!.collectedDate;
+                  } else {
+                    date = DateTime(0);
+                  }
+
+                  int latestCounter = printer.counters?.isNotEmpty == true
+                      ? printer.counters!.last?.counter ?? 0
+                      : 0;
+
+                  int penultimateCounter = (printer.counters?.length ?? 0) >= 2
+                      ? printer.counters![printer.counters!.length - 2]
+                              ?.counter ??
+                          0
+                      : 0;
+
+                  return DataRow(
+                    cells: <DataCell>[
+                      DataCell(
+                        Text(printer.id.toString()),
+                      ),
+                      DataCell(
+                        Text(printer.name),
+                      ),
+                      DataCell(
+                        Text(printer.selb),
+                      ),
+                      DataCell(
+                        Text(printer.ip),
+                      ),
+                      DataCell(
+                        Text(printer.department),
+                      ),
+                      DataCell(
+                        Text(printer.company),
+                      ),
+                      DataCell(
+                        Text(penultimateCounter.toString()),
+                      ),
+                      DataCell(
+                        Text(latestCounter.toString()),
+                      ),
+                      DataCell(
+                        Text(date == DateTime(0)
+                            ? 'Não coletado'
+                            : '${date.hour}:${date.minute}  ${date.day}/${date.month}/${date.year}'),
+                      ),
+                    ],
+                    selected: selected,
+                    onSelectChanged: (value) {
+                      ct.selectPrinter = index;
+                    },
+                  );
+                },
               ),
-              DataColumn(
-                label: Text('IP', style: columnTextStyle),
-              ),
-              DataColumn(
-                label: Text('Local', style: columnTextStyle),
-              ),
-              DataColumn(
-                label: Text('Contador Anterior', style: columnTextStyle),
-              ),
-              DataColumn(
-                label: Text('Contador Atual', style: columnTextStyle),
-              ),
-              DataColumn(
-                label: Text('Data de coleta', style: columnTextStyle),
-              ),
-            ],
-            rows: List<DataRow>.generate(
-              printers.length,
-              (index) {
-                var printer = printers[index];
-                var selected = ct.isPrinterSelected[index];
-                var date = printer.counters!.last!.collectedDate;
-                var latestCounter = printer.counters!.last!.counter;
-                var penultimateCounter = printer.counters!
-                    .elementAt(printer.counters!.length - 2)!
-                    .counter;
-                return DataRow(
-                  cells: <DataCell>[
-                    DataCell(
-                      Text(printer.name),
-                    ),
-                    DataCell(
-                      Text(printer.ip),
-                    ),
-                    DataCell(
-                      Text(printer.department),
-                    ),
-                    DataCell(
-                      Text(penultimateCounter.toString()),
-                    ),
-                    DataCell(
-                      Text(latestCounter.toString()),
-                    ),
-                    DataCell(Text(
-                        '${date.hour}:${date.minute}  ${date.day}/${date.month}/${date.year}')),
-                  ],
-                  selected: selected,
-                  onSelectChanged: (value) {
-                    ct.selectPrinter = index;
-                  },
-                );
-              },
-            ),
-          );
-        }
-      ),
+            );
+          }),
     );
   }
 }

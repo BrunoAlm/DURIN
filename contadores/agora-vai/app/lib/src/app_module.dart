@@ -1,6 +1,7 @@
 
 import 'package:app/main.dart';
 import 'package:app/src/core/api_service.dart';
+import 'package:app/src/pages/features/dashboard/dashboard_controller.dart';
 import 'package:app/src/pages/features/printers/printers_repository.dart';
 import 'package:app/src/pages/features/printers/printers_controller.dart';
 import 'package:app/src/pages/features/reports/reports_controller.dart';
@@ -18,5 +19,6 @@ class AppModule {
     di.registerLazySingleton(() => PrintersController());
     di.registerFactory(() => NavigationStore());
     di.registerFactory(() => ReportsController());
+    di.registerFactory(() => DashboardController());
   }
 }

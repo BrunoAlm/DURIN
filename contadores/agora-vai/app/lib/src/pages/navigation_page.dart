@@ -1,5 +1,5 @@
 import 'package:app/main.dart';
-import 'package:app/src/pages/features/home/home_page.dart';
+import 'package:app/src/pages/features/dashboard/dashboard_page.dart';
 import 'package:app/src/pages/features/printers/printers_page.dart';
 import 'package:app/src/pages/features/printers/printers_controller.dart';
 import 'package:app/src/pages/features/reports/reports_page.dart';
@@ -19,7 +19,7 @@ class _NavigationPageState extends State<NavigationPage> {
   final PrintersController _printersCt = di();
 
   final List<Widget> pages = [
-    const HomePage(),
+    const DashboardPage(),
     const PrintersPage(),
     const ReportsPage()
   ];
@@ -27,6 +27,11 @@ class _NavigationPageState extends State<NavigationPage> {
   @override
   void initState() {
     _printersCt.init();
+    _printersCt.addListener(() {
+      setState(() {
+        _printersCt.init();
+      });
+    });
     super.initState();
   }
 
@@ -121,9 +126,9 @@ class _NavigationPageState extends State<NavigationPage> {
               ),
               destinations: const <NavigationRailDestination>[
                 NavigationRailDestination(
-                  icon: Icon(Icons.home_outlined),
-                  selectedIcon: Icon(Icons.home),
-                  label: Text('Home'),
+                  icon: Icon(Icons.dashboard_outlined),
+                  selectedIcon: Icon(Icons.dashboard_rounded),
+                  label: Text('Dashboard'),
                 ),
                 NavigationRailDestination(
                   icon: Icon(Icons.local_printshop_outlined),

@@ -26,7 +26,7 @@ class _PrintersPageState extends State<PrintersPage> {
           if (printers.isEmpty) {
             return const Center(child: CircularProgressIndicator());
           }
-          var zebras = printers.where((p) => p.type == 'zebra').toList();
+          var zebras = printers.where((p) => p.type == 'etiqueta').toList();
           var multifuns =
               printers.where((p) => p.type == 'multifuncional').toList();
           return ListView.builder(

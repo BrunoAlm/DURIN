@@ -9,4 +9,10 @@ class Helpers {
     "Araquari",
     "Maceió",
   ];
+  static const dadosParaCalculo = {
+    "valorImpressoraEtiquetas": 352.47,
+    "valorImpressoraMultifuncional": 0.00,
+    "valorPaginaExcedenteEtiquetas": 0.0025,
+    "valorPaginaExcedenteMultifuncional": 0.1177,
+  };
 }

@@ -41,10 +41,11 @@ class Impressora(Base):
     nivel_toner = Column(String(15))
     modelo = Column(String(20))
     status = Column(String(30))
+    empresa = Column(String(15)) 
     
     contadores = relationship('Contador', backref='impressora', lazy=True, cascade='all, delete-orphan', passive_deletes=True)
 
-    def __init__(self, ip, nome, selb, setor, tipo, nivel_toner, modelo, status, contadores):
+    def __init__(self, ip, nome, selb, setor, tipo, nivel_toner, modelo, status, empresa, contadores):
         self.ip = ip
         self.nome = nome
         self.selb = selb
@@ -54,6 +55,7 @@ class Impressora(Base):
         self.modelo = modelo
         self.status = status
         self.contadores = contadores
+        self.empresa = empresa
     
 
     def serialize(self):
@@ -67,5 +69,6 @@ class Impressora(Base):
             'nivel_toner': self.nivel_toner,
             'modelo': self.modelo,
             'status': self.status,
+            'empresa': self.empresa,
             'contadores': self.contadores
         }

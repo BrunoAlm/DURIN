@@ -1,5 +1,5 @@
 import 'package:app/src/app_module.dart';
-import 'package:app/src/pages/features/home/home_page.dart';
+import 'package:app/src/pages/features/dashboard/dashboard_page.dart';
 import 'package:app/src/pages/features/printers/printers_page.dart';
 import 'package:app/src/pages/features/reports/reports_page.dart';
 import 'package:app/src/pages/features/settings/settings_page.dart';
@@ -25,7 +25,7 @@ class AppWidget extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const NavigationPage(),
-        '/home': (context) => const HomePage(),
+        '/home': (context) => const DashboardPage(),
         '/printers': (context) => const PrintersPage(),
         '/reports': (context) => const ReportsPage(),
         '/settings': (context) => const SettingsPage(),
