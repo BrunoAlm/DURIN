@@ -1,5 +1,6 @@
 import 'package:app/main.dart';
 import 'package:app/src/pages/features/dashboard/dashboard_controller.dart';
+import 'package:app/src/pages/features/dashboard/widgets/draggable_column.dart';
 import 'package:app/src/pages/features/printers/printers_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -14,131 +15,25 @@ class _DashboardPageState extends State<DashboardPage>
     with TickerProviderStateMixin {
   final PrintersController printersCt = di();
   final DashboardController dashCt = di();
-  double _blockWidth = 0;
-  var rowKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Flexible(
-          child: Container(
-            decoration: BoxDecoration(border: Border.all()),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 100 + _blockWidth,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                          decoration: const BoxDecoration(
-                              border: Border(bottom: BorderSide())),
-                          child: const Text('Header1')),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: List.generate(
-                          10,
-                          (index) => Container(
-                              decoration: const BoxDecoration(
-                                  border: Border(bottom: BorderSide())),
-                              child: Text('$index')),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                MouseRegion(
-                  cursor: SystemMouseCursors.resizeColumn,
-                  child: GestureDetector(
-                    onHorizontalDragStart: (details) {
-                      _onColumnDragStart();
-                    },
-                    onHorizontalDragUpdate: (details) =>
-                        _onColumnDragUpdate(details.delta.dx, screenWidth),
-                    onHorizontalDragEnd: (details) =>
-                        _onColumnDragEnd(screenWidth),
-                    child: Container(
-                      width: 2,
-                      decoration: const BoxDecoration(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 100 + _blockWidth,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Container(
-                          decoration: const BoxDecoration(
-                              border: Border(bottom: BorderSide())),
-                          child: const Text('Header2')),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: List.generate(
-                          10,
-                          (index) => Container(
-                              decoration: const BoxDecoration(
-                                  border: Border(bottom: BorderSide())),
-                              child: Text('$index')),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                MouseRegion(
-                  cursor: SystemMouseCursors.resizeColumn,
-                  child: GestureDetector(
-                    onHorizontalDragStart: (details) {
-                      _onColumnDragStart();
-                    },
-                    onHorizontalDragUpdate: (details) =>
-                        _onColumnDragUpdate(details.delta.dx, screenWidth),
-                    onHorizontalDragEnd: (details) =>
-                        _onColumnDragEnd(screenWidth),
-                    child: Container(
-                      width: 2,
-                      decoration: const BoxDecoration(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 100 + _blockWidth,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Container(
-                          decoration: const BoxDecoration(
-                              border: Border(bottom: BorderSide())),
-                          child: const Text('Header3')),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: List.generate(
-                          10,
-                          (index) => Container(
-                              decoration: const BoxDecoration(
-                                  border: Border(bottom: BorderSide())),
-                              child: Text('$index')),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
+    return ValueListenableBuilder(
+      valueListenable: dashCt.lColumnWidth,
+      builder: (context, _, __) {
+        return Container(
+          decoration: BoxDecoration(border: Border.all()),
+          child: const Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DraggableColumn(),
+              DraggableColumn(),
+              DraggableColumn(),
+            ],
           ),
-        ),
-      ],
+        );
+      }
     );
     // final headers = ["Nome", "IP", "Contador Atual"];
     // final data = [
@@ -188,26 +83,4 @@ class _DashboardPageState extends State<DashboardPage>
     // );
   }
 
-  void _onColumnDragStart() {
-    // setState(() {
-    //   _blockWidth -= 10;
-    // });
-  }
-
-  void _onColumnDragUpdate(double delta, double screenWidth) {
-    print(rowKey);
-    if (_blockWidth >= 0 && _blockWidth <= screenWidth - 200) {
-      print("Bloco: $_blockWidth Tela: $screenWidth");
-      setState(() {
-        _blockWidth += delta;
-      });
-    }
-  }
-
-  void _onColumnDragEnd(double screenWidth) {
-    setState(() {
-      _blockWidth = _blockWidth.clamp(10, screenWidth);
-      _blockWidth -= 1;
-    });
-  }
 }

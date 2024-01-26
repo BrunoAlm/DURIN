@@ -6,6 +6,10 @@ class DashboardController extends ChangeNotifier {
   late int counter;
   late double printerCost;
 
+  final ValueNotifier<double> lColumnWidth = ValueNotifier(0);
+
+  double get columnWidth => lColumnWidth.value;
+
   init(List<CountersEntity?>? counters, String tipo) {
     counter = calculaContador(counters);
     printerCost = calculaCustoImpressora(tipo);
@@ -42,5 +46,19 @@ class DashboardController extends ChangeNotifier {
     }
 
     return counter * valorPagExcedente + valorTotal;
+  }
+
+  void onColumnDragStart() {}
+
+  void onColumnDragUpdate(double delta, double screenWidth) {
+    if (lColumnWidth.value >= 0 && lColumnWidth.value <= screenWidth - 200) {
+      print("Bloco: $lColumnWidth.value Tela: $screenWidth");
+      lColumnWidth.value += delta;
+    }
+  }
+
+  void onColumnDragEnd(double screenWidth) {
+    lColumnWidth.value = lColumnWidth.value.clamp(10, screenWidth);
+    // _columnWidth.value -= 1;
   }
 }
