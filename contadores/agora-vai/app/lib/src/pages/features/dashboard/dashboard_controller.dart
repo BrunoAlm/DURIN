@@ -6,9 +6,13 @@ class DashboardController extends ChangeNotifier {
   late int counter;
   late double printerCost;
 
-  final ValueNotifier<double> lColumnWidth = ValueNotifier(0);
+  final _listColumnsWidth = ValueNotifier(<double>[0, 0, 0, 0]);
 
-  double get columnWidth => lColumnWidth.value;
+  List<double> get columnsWidth => _listColumnsWidth.value;
+
+  // setColumnsQty(int qty) {
+  //   _listColumnsWidth.value = List.filled(qty, 0);
+  // }
 
   init(List<CountersEntity?>? counters, String tipo) {
     counter = calculaContador(counters);
@@ -50,15 +54,27 @@ class DashboardController extends ChangeNotifier {
 
   void onColumnDragStart() {}
 
-  void onColumnDragUpdate(double delta, double screenWidth) {
-    if (lColumnWidth.value >= 0 && lColumnWidth.value <= screenWidth - 200) {
-      print("Bloco: $lColumnWidth.value Tela: $screenWidth");
-      lColumnWidth.value += delta;
+  void onColumnDragUpdate(double delta, int columnIndex, double screenWidth) {
+    double sumWidths = _listColumnsWidth.value
+        .fold(0.0, (previousValue, element) => previousValue + element);
+
+    // Check if the column width is greater than or equal to 0
+    // and if the sum of all widths is less than screenWidth
+    if (_listColumnsWidth.value[columnIndex] >= 0 &&
+        sumWidths + delta <= screenWidth - 600) {
+      _listColumnsWidth.value[columnIndex] += delta;
     }
+
+    debugPrint(
+        "Largura coluna: ${_listColumnsWidth.value[columnIndex]} Tela: $screenWidth update");
+    notifyListeners();
   }
 
-  void onColumnDragEnd(double screenWidth) {
-    lColumnWidth.value = lColumnWidth.value.clamp(10, screenWidth);
-    // _columnWidth.value -= 1;
+  void onColumnDragEnd(double screenWidth, int columnIndex) {
+    _listColumnsWidth.value[columnIndex] =
+        _listColumnsWidth.value[columnIndex].clamp(1, screenWidth);
+    notifyListeners();
+    debugPrint(
+        "Largura coluna: ${_listColumnsWidth.value[columnIndex]} Tela: $screenWidth end");
   }
 }

@@ -11,76 +11,38 @@ class DashboardPage extends StatefulWidget {
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage>
-    with TickerProviderStateMixin {
+class _DashboardPageState extends State<DashboardPage> {
   final PrintersController printersCt = di();
   final DashboardController dashCt = di();
+  int columnsQty = 4;
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: dashCt.lColumnWidth,
-      builder: (context, _, __) {
-        return Container(
-          decoration: BoxDecoration(border: Border.all()),
-          child: const Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DraggableColumn(),
-              DraggableColumn(),
-              DraggableColumn(),
-            ],
-          ),
-        );
-      }
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    return AnimatedBuilder(
+      animation: dashCt,
+      builder: (context, child) => Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Row(
+            children: List.generate(
+          columnsQty,
+          (index) {
+            // dashCt.setColumnsQty(columnsQty);
+            return DraggableColumn(
+              columnWidth: dashCt.columnsWidth[index],
+              onColumnDragUpdate: (update) {
+                double delta = update.delta.dx;
+                dashCt.onColumnDragUpdate(delta, index, screenWidth);
+              },
+              onColumnDragEnd: (end) =>
+                  dashCt.onColumnDragEnd(screenWidth, index),
+              header: 'Column ${index + 1}',
+              cells: List.generate(10, (index) => index.toString()),
+            );
+          },
+        )),
+      ),
     );
-    // final headers = ["Nome", "IP", "Contador Atual"];
-    // final data = [
-    //   ["impxr001", "10.0.3.1", "123123"],
-    //   ["impxr002", "10.0.3.2", "1231234"],
-    //   ["impxr003", "10.0.3.3", "12312345"],
-    // ];
-    // return Padding(
-    //   padding: const EdgeInsets.all(18.0),
-    //   child: DraggableTable(headers: headers, data: data),
-    // );
-    // return
-
-    // ValueListenableBuilder(
-    //   valueListenable: printersCt.printers,
-    //   builder: (context, printers, child) {
-    //     if (printers.isEmpty) {
-    //       return const Center(child: CircularProgressIndicator());
-    //     }
-
-    // return GridView.builder(
-    //   // itemCount: Helpers.branchesList.length,
-    //   itemCount: printers.length,
-    //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-    //       crossAxisCount: 8),
-    //   shrinkWrap: true,
-    //   scrollDirection: Axis.vertical,
-    //   itemBuilder: (context, index) {
-    //     dashCt.init(printers[index].counters, printers[index].type);
-    //     int counter = dashCt.counter;
-    //     double printerCost = dashCt.printerCost;
-    //     // String branch = Helpers.branchesList[index];
-    //     return Card(
-    //       child: Column(
-    //         mainAxisAlignment: MainAxisAlignment.center,
-    //         crossAxisAlignment: CrossAxisAlignment.start,
-    //         children: [
-    //           Text("Nome: ${printers[index].name}"),
-    //           Text("Quantidade impressa: $counter páginas/inches"),
-    //           Text("Custo: R\$${printerCost.toStringAsFixed(2)}"),
-    //         ],
-    //       ),
-    //     );
-    //   },
-    // );
-    // },
-    // );
   }
-
 }
