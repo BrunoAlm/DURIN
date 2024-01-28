@@ -25,6 +25,8 @@ class DraggableColumn extends StatefulWidget {
 class _DraggableColumnState extends State<DraggableColumn> {
   double dragBarWidth = 2;
   double borderWidth = 2;
+  Color borderColor = Colors.black26;
+  Color dragBarColor = Colors.black26;
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +41,21 @@ class _DraggableColumnState extends State<DraggableColumn> {
               Container(
                   decoration: BoxDecoration(
                     border: Border(
-                      bottom: BorderSide(width: borderWidth),
-                      top: BorderSide(width: borderWidth),
+                      bottom:
+                          BorderSide(width: borderWidth, color: borderColor),
+                      top: BorderSide(width: borderWidth, color: borderColor),
                     ),
                   ),
                   child: Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                    child: Text(widget.header),
+                    child: Text(
+                      widget.header,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   )),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,7 +64,8 @@ class _DraggableColumnState extends State<DraggableColumn> {
                   (index) => Container(
                     decoration: BoxDecoration(
                       border: Border(
-                        bottom: BorderSide(width: borderWidth),
+                        bottom:
+                            BorderSide(width: borderWidth, color: borderColor),
                       ),
                     ),
                     child: Padding(
@@ -73,9 +83,11 @@ class _DraggableColumnState extends State<DraggableColumn> {
             cursor: SystemMouseCursors.resizeColumn,
             onHover: (event) => setState(() {
                   dragBarWidth = 4;
+                  dragBarColor = Colors.black54;
                 }),
             onExit: (event) => setState(() {
                   dragBarWidth = 2;
+                  dragBarColor = Colors.black26;
                 }),
             child: GestureDetector(
               onHorizontalDragStart: widget.onColumnDragStart,
@@ -83,7 +95,7 @@ class _DraggableColumnState extends State<DraggableColumn> {
               onHorizontalDragEnd: widget.onColumnDragEnd,
               child: Container(
                 width: dragBarWidth,
-                decoration: const BoxDecoration(color: Colors.black),
+                decoration: BoxDecoration(color: dragBarColor),
               ),
             ))
       ],

@@ -54,19 +54,18 @@ class DashboardController extends ChangeNotifier {
 
   void onColumnDragStart() {}
 
-  void onColumnDragUpdate(double delta, int columnIndex, double screenWidth) {
+  void onColumnDragUpdate(double delta, int columnIndex, double tableWidth) {
     double sumWidths = _listColumnsWidth.value
         .fold(0.0, (previousValue, element) => previousValue + element);
-
+    
     // Check if the column width is greater than or equal to 0
     // and if the sum of all widths is less than screenWidth
-    if (_listColumnsWidth.value[columnIndex] >= 0 &&
-        sumWidths + delta <= screenWidth - 600) {
+    if (_listColumnsWidth.value[columnIndex] >= 0 && sumWidths + delta <= tableWidth - _listColumnsWidth.value.length * 103) {
       _listColumnsWidth.value[columnIndex] += delta;
     }
-
+    debugPrint('soma todas larguras: $sumWidths');
     debugPrint(
-        "Largura coluna: ${_listColumnsWidth.value[columnIndex]} Tela: $screenWidth update");
+        "Largura coluna: ${_listColumnsWidth.value[columnIndex]} Tela: $tableWidth update");
     notifyListeners();
   }
 
